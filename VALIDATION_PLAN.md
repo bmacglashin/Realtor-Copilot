@@ -1,490 +1,510 @@
 # Validation Plan: Realty Copilot
-*Last Updated: January 2026*
+*Last Updated: January 2026 (v2)*
 
 ## Executive Summary
 
-This document outlines the 10 most critical hypotheses that must be validated before significant development investment. Each hypothesis includes testing methodology, success criteria, and prioritized execution order.
+This document outlines a **3-phase validation approach** optimized for a non-technical founder with limited time and budget. The key innovation is using AI research tools (Gemini Deep Research) to analyze Reddit and forums before conducting interviews, reducing the number of interviews needed while increasing their quality.
 
-**Core Question We're Answering:** Is there a segment of real estate agents who will pay $199-299/month for a conversation-first AI assistant, and can we build it profitably?
+**Core Question:** Will solo agents (7-20 deals/year) pay $199/month for an invisible CRM they can simply talk to?
+
+**Validation Budget:** ~$1,500 over 3 weeks
+**Minimum Evidence Required:** 3 deposits + 60% interview validation rate
 
 ---
 
 ## Validation Philosophy
 
+### Evidence Hierarchy
+| Level | Type | Weight | Example |
+|-------|------|--------|---------|
+| **1** | Money committed | Highest | $50 deposit |
+| **2** | Time committed | High | 30-min interview, beta testing |
+| **3** | Specific past behavior | Medium | "I tried X and Y" |
+| **4** | Stated future intent | Low | "I would definitely use this" |
+| **5** | Hypothetical interest | Lowest | "That sounds interesting" |
+
+**We prioritize Level 1-3 evidence. Level 4-5 alone is not sufficient to proceed.**
+
 ### The Mom Test Principles
-Based on "The Mom Test" by Rob Fitzpatrick:
 1. Talk about their life, not your idea
 2. Ask about specifics in the past, not generics about the future
 3. Talk less, listen more
 4. Bad news is good news (if honest)
 
-### Evidence Hierarchy
-| Level | Type | Value |
-|-------|------|-------|
-| 1 | **Behavioral** | What they actually did (highest) |
-| 2 | **Commitment** | Time, money, reputation at stake |
-| 3 | **Stated intent** | "I would definitely use this" |
-| 4 | **Hypothetical** | "That sounds interesting" (lowest) |
+---
 
-We prioritize Level 1-2 evidence over Level 3-4.
+## Phase 1: AI-Powered Secondary Research (Week 1)
+
+### Objective
+Use AI research tools to systematically analyze public discussions from real estate agents to:
+- Validate pain points before interviews
+- Identify common objections and concerns
+- Understand actual tool usage and spending patterns
+- Refine interview questions based on real agent language
+
+### Research Sources
+
+| Source | What to Extract | Tool |
+|--------|-----------------|------|
+| **r/realtors** | Pain points, tool complaints, CRM discussions | Gemini Deep Research |
+| **r/RealEstate** | Agent-client dynamics, workflow discussions | Gemini Deep Research |
+| **BiggerPockets Forums** | Tool recommendations, pricing sensitivity | Gemini Deep Research |
+| **Facebook Groups** | Real-time frustrations, tool discussions | Manual (if accessible) |
+| **Twitter/X** | Agent complaints, tool mentions | Gemini Deep Research |
+| **G2/Capterra Reviews** | CRM complaints and praise | Manual review |
+
+### Research Queries for Gemini Deep Research
+
+**Query 1: Pain Point Validation**
+```
+Search Reddit (r/realtors, r/RealEstate) for posts and comments from
+real estate agents discussing:
+- CRM frustrations and complaints
+- Missing follow-ups with clients
+- Lead response time challenges
+- Administrative burden
+- Tool overwhelm
+
+Extract: Specific quotes, frequency of complaints, emotional intensity
+```
+
+**Query 2: Tool Usage & Spending**
+```
+Search Reddit and BiggerPockets for real estate agents discussing:
+- What CRM they use and why
+- What they pay for tools monthly
+- Why they switched CRMs
+- What they wish their CRM did
+
+Extract: Named tools, price points mentioned, switching triggers
+```
+
+**Query 3: AI Assistant Interest**
+```
+Search for real estate agent discussions about:
+- AI tools for real estate
+- Virtual assistants vs. software
+- Voice assistants for work
+- ChatGPT/Claude for real estate
+
+Extract: Adoption barriers, concerns, excitement signals
+```
+
+**Query 4: Speed-to-Lead Reality**
+```
+Search for real estate agents discussing:
+- Lead response time
+- Missing leads while busy
+- Losing deals to faster agents
+- Automation for lead response
+
+Extract: Specific stories, emotional reactions, attempted solutions
+```
+
+### Research Output Template
+
+For each source, document:
+
+| Category | Finding | Quote/Evidence | Confidence |
+|----------|---------|----------------|------------|
+| Pain Point | [Specific pain] | "Exact quote from agent" | High/Med/Low |
+| Tool Usage | [Current behavior] | "I use X because..." | High/Med/Low |
+| Price Point | [What they pay] | "$X/month for Y" | High/Med/Low |
+| Objection | [Concern] | "I wouldn't use Z because..." | High/Med/Low |
+
+### Success Criteria (Phase 1)
+
+- [ ] 50+ relevant quotes extracted from Reddit/forums
+- [ ] Top 5 pain points ranked by frequency
+- [ ] Average stated tool spend identified
+- [ ] Common objections catalogued
+- [ ] Interview guide refined based on findings
 
 ---
 
-## Top 10 Hypotheses to Validate
+## Phase 2: Customer Interviews (Week 2)
 
-### Hypothesis 1: Mid-Tier Agents (3-15 deals/year) Are Underserved
-**Priority: #1 (Critical)**
+### Interview Target
 
-**Claim:** Agents doing 3-15 deals/year have enough pain to pay for solutions but not enough resources to hire help or master complex CRMs.
+**Quantity:** 10-15 agents (reduced from 20 due to Phase 1 insights)
+**Profile:** Solo agents, 7-20 deals/year, active in past 12 months
 
-**Testing Method:**
-1. Interview 20 agents across the production spectrum
-2. Ask about their current tools and satisfaction
-3. Document time spent on admin vs. selling
-4. Probe for purchasing history and budget
+### Recruitment Sources
 
-**Key Interview Questions:**
-- "Walk me through what happened after your last lead came in."
-- "What tools are you paying for right now? How much total?"
-- "When was the last time you missed a follow-up? What happened?"
-- "Have you tried hiring help? Why/why not?"
-- "What's the most you've ever paid for a tool that saved you time?"
+| Source | Target | Approach |
+|--------|--------|----------|
+| Personal network | 3-5 | Direct outreach |
+| Reddit r/realtors | 2-3 | DM after engaging with their posts |
+| Facebook groups | 2-3 | Group post or DMs |
+| LinkedIn | 2-3 | Connection + message |
+| Referrals | 2-3 | "Know anyone else who might help?" |
 
-**Success Criteria:**
-- ≥70% of 3-15 deal agents report CRM frustration (complexity, time)
-- ≥50% currently pay $50+/month for tools
-- ≥60% have tried and abandoned a CRM
-- Average admin time >4 hours/day reported
+### Interview Guide (30 minutes)
+
+#### Opening (2 min)
+"Thanks for your time. I'm exploring how agents manage their business, particularly around client communication and follow-up. I'm not selling anything today—just learning. Everything you share helps me understand the real challenges."
+
+#### Current State (8 min)
+
+1. "Walk me through your typical day. What does a busy day look like?"
+   - *Listen for: Admin time, driving time, client meetings*
+
+2. "How many deals did you close last year? How many are you working on now?"
+   - *Validates they're in target segment (7-20 deals)*
+
+3. "What tools are you using to run your business? Roughly what do you spend on them monthly?"
+   - *Validates tool spending, identifies current CRM*
+
+#### Pain Points (10 min)
+
+4. "Tell me about the last lead you lost. What happened?"
+   - *Listen for: Speed issues, follow-up failures, organization*
+
+5. "When's the last time you forgot to follow up with someone important? What happened?"
+   - *Listen for: Emotional reaction, consequences*
+
+6. "What's the most frustrating part of staying organized?"
+   - *Listen for: CRM complaints, manual work, time sinks*
+
+7. "Walk me through how you create a listing description. How long does it usually take?"
+   - *Validates document generation pain point*
+
+#### Solution Testing (8 min)
+
+8. "What if you could just tell your phone 'add Sarah Johnson, buyer, budget 500K, wants Buckhead' and it was done? How would that compare to what you do now?"
+   - *Tests conversation-first concept*
+
+9. "If a tool saved you 10 hours a week on admin work, what would that be worth to you?"
+   - *Tests willingness to pay*
+
+10. "At what price would you say 'that's too expensive, I'd never consider it'?"
+    - *Van Westendorp question 1*
+
+11. "At what price would you say 'that's so cheap I'd question the quality'?"
+    - *Van Westendorp question 2*
+
+#### Close (2 min)
+
+12. "Would you be interested in testing an early version and giving feedback?"
+    - *Level 2 evidence: time commitment*
+
+13. "We're doing founding member spots for $50 down. Would you want to reserve your spot?"
+    - *Level 1 evidence: money commitment*
+
+14. "Who else should I talk to? Anyone you know who struggles with similar challenges?"
+    - *Referral generation*
+
+### Interview Analysis Framework
+
+After each interview, score:
+
+| Question | What We Learned | Evidence Level | Validation? |
+|----------|-----------------|----------------|-------------|
+| Pain Point (Speed) | [Response] | 1-5 | Yes/No |
+| Pain Point (Follow-up) | [Response] | 1-5 | Yes/No |
+| Current Tool Spend | $[Amount] | 3 | N/A |
+| Price Sensitivity | [Response] | 4 | Yes/No |
+| Commit to Test | Yes/No | 2 | Yes/No |
+| Commit to Deposit | Yes/No | 1 | Yes/No |
+
+### Success Criteria (Phase 2)
+
+- [ ] 10+ interviews completed
+- [ ] 60%+ validate speed-to-lead pain (Level 3+ evidence)
+- [ ] 60%+ validate CRM complexity frustration (Level 3+ evidence)
+- [ ] Average tool spend >$75/month
+- [ ] 40%+ indicate $199/mo is acceptable (Van Westendorp)
+- [ ] 50%+ commit to testing (Level 2 evidence)
+- [ ] **3+ commit deposits (Level 1 evidence)**
+
+---
+
+## Phase 3: Commitment Testing (Week 3)
+
+### Landing Page Test
+
+**Objective:** Convert stated interest into financial commitment
+
+**Page Elements:**
+1. Headline: "Stop Fighting Your CRM. Just Talk."
+2. Subhead: "Realty Copilot is the AI assistant that makes your CRM invisible."
+3. Problem statement (speed-to-lead focus)
+4. Solution preview (30-second video demo)
+5. Pricing: "$199/month for early access"
+6. CTA: "Reserve Your Founding Member Spot ($50, refundable)"
+
+**Traffic Sources:**
+- Direct links to interview participants who didn't commit live
+- Reddit post in r/realtors (if allowed)
+- Personal network sharing
+- Small Facebook ad test ($100-200)
+
+### Deposit Structure
+
+| Tier | Deposit | Benefit | Goal |
+|------|---------|---------|------|
+| Founding Member | $50 | 50% off first 3 months, early access, feature input | 10 deposits |
+
+**Refund Policy:** Full refund if we don't launch within 90 days or they're not satisfied after 30-day trial.
+
+### Success Criteria (Phase 3)
+
+- [ ] Landing page live
+- [ ] 100+ unique visitors
+- [ ] **3+ deposits collected** (CRITICAL)
+- [ ] Conversion rate >3% (deposits / visitors)
+- [ ] Zero "this is too expensive" feedback at $199
+
+---
+
+## Key Hypotheses to Validate
+
+### Hypothesis 1: Solo Agents (7-20 deals) Are Underserved
+**Priority:** Critical
+
+**Claim:** Agents doing 7-20 deals/year have enough pain to pay for solutions but are ignored by enterprise CRMs and too sophisticated for budget tools.
+
+**Validation Method:**
+- Phase 1: Reddit research on agent segment discussions
+- Phase 2: Interview 10+ agents in this range
+
+**Evidence Required:**
+- 60%+ report CRM frustration
+- 60%+ currently pay $50+/month for tools
+- Qualitative stories of being "too small" for enterprise or "too serious" for budget
 
 **Kill Criteria:**
-- <40% report meaningful CRM frustration
-- Average tool spend <$30/month
-- Top producers (10+ deals) show same pain profile (we're not differentiated for them)
+- <40% frustration rate
+- Average spend <$30/month
+- Segment is too price-sensitive for $199
 
 ---
 
-### Hypothesis 2: Speed-to-Lead Is a Real, Felt Pain Point
-**Priority: #2 (Critical)**
+### Hypothesis 2: Speed-to-Lead Is Felt Pain
+**Priority:** Critical
 
-**Claim:** Agents lose deals because they can't respond fast enough to leads, and they're aware of this problem.
+**Claim:** Agents actively lose deals because they can't respond fast enough, and they're aware of this problem.
 
-**Testing Method:**
-1. Ask agents about their last 3 lost leads
-2. Probe for perceived reasons for loss
-3. Document current response time and method
-4. Test awareness of speed-to-lead research
+**Validation Method:**
+- Phase 1: Reddit search for lead response discussions
+- Phase 2: Interview question "Tell me about the last lead you lost"
 
-**Key Interview Questions:**
-- "Tell me about a lead you lost recently. What happened?"
-- "How do you typically find out when a new lead comes in?"
-- "What's the longest you've ever waited to respond to a lead? What were you doing?"
-- "When you're showing houses, how do you handle new inquiries?"
-
-**Success Criteria:**
-- ≥60% cite "slow response" as a reason for lost leads
-- Average reported response time >30 minutes
-- ≥50% express frustration about inability to respond while busy
-- Specific stories of deals lost to faster competitors
+**Evidence Required:**
+- 60%+ cite slow response as a factor in lost deals
+- Specific stories with emotional resonance
+- Current response time >30 minutes average
 
 **Kill Criteria:**
-- Agents don't perceive speed as a competitive factor
-- Current response times are already <5 minutes
-- Other factors (price, relationship) dominate lead loss explanations
+- <40% cite speed as factor
+- Agents report they're already fast enough
+- Other factors dominate (price, relationship)
 
 ---
 
-### Hypothesis 3: $199-299/month Is Within Willingness to Pay
-**Priority: #3 (Critical)**
+### Hypothesis 3: $199/Month Is Within Willingness to Pay
+**Priority:** Critical
 
-**Claim:** Mid-tier agents will pay $199-299/month for a tool that demonstrably saves 10+ hours/week.
+**Claim:** Solo agents will pay $199/month for a tool that saves 10+ hours/week.
 
-**Testing Method:**
-1. Document current tool spending in interviews
-2. Use "Van Westendorp Price Sensitivity" questions
-3. Test price anchoring against alternatives (assistant, current tools)
-4. Attempt pre-launch signups at stated price
+**Validation Method:**
+- Phase 1: Reddit research on tool spending
+- Phase 2: Van Westendorp questions in interviews
+- Phase 3: Deposit collection at $199 price point
 
-**Key Interview Questions:**
-- "What are you paying for all your tools combined right now?"
-- "If a tool saved you 10 hours a week, what would that be worth to you?"
-- "At what price would you consider this too expensive to even consider?"
-- "At what price would you consider this so cheap you'd question the quality?"
-- "At what price would you say it's getting expensive but you might still consider it?"
-- "Would you put down $50 today to be first in line when we launch?"
-
-**Success Criteria:**
-- ≥40% indicate willingness to pay $150+/month
-- Van Westendorp optimal price range includes $199
-- ≥3 agents put down deposits (Level 2 evidence)
-- Current total tool spend averages >$100/month
+**Evidence Required:**
+- Average current tool spend >$75/month
+- Van Westendorp optimal range includes $199
+- 3+ deposits collected
 
 **Kill Criteria:**
-- Optimal price range is <$100/month
-- Zero agents willing to commit deposits
-- Strong resistance when $199 price is mentioned
+- Average spend <$50/month
+- Van Westendorp optimal <$100
+- Zero deposits despite 100+ landing page visitors
 
 ---
 
-### Hypothesis 4: Conversation-First UI Is Meaningfully Better
-**Priority: #4 (High)**
+### Hypothesis 4: Conversation-First Is Meaningfully Better
+**Priority:** High
 
-**Claim:** Agents will prefer talking to their CRM over clicking through dashboards, and this preference is strong enough to drive switching.
+**Claim:** Agents will prefer telling their CRM what to do over clicking through interfaces.
 
-**Testing Method:**
-1. Build clickable prototype (Figma/prototype)
-2. A/B test task completion: chat vs. dashboard
-3. Measure time to complete common tasks
-4. Collect preference and intent data
+**Validation Method:**
+- Phase 2: Interview reactions to concept
+- Phase 3/MVP: Prototype testing if needed
 
-**Prototype Test Tasks:**
-- Add a new contact with notes
-- Find all leads from last 30 days
-- Draft a follow-up email
-- Check status of a deal
-- Set a reminder for next week
-
-**Success Criteria:**
-- ≥70% complete tasks faster via chat
-- ≥80% express preference for chat interface
-- Unprompted "wow" reactions to speed
-- ≥50% say they'd switch from current tool
+**Evidence Required:**
+- 70%+ positive reaction to conversation concept
+- Unprompted comments about hating dashboards
+- Comparison to current experience shows clear preference
 
 **Kill Criteria:**
-- No meaningful time difference
-- Agents prefer seeing data in dashboard format
-- Chat feels "slower" or "harder" for common tasks
+- Agents prefer seeing data visually
+- Conversation feels "weird" or "slow"
+- Dashboard expectation is strong
 
 ---
 
-### Hypothesis 5: Agents Will Use Voice While Driving
-**Priority: #5 (High)**
+### Hypothesis 5: Data Flywheel Creates Value
+**Priority:** Medium (Long-term)
 
-**Claim:** Agents spend 3-4 hours driving daily and will use voice commands to manage their CRM during this time.
+**Claim:** Aggregated, anonymized insights from agent behavior will create unique value that improves the product for everyone.
 
-**Testing Method:**
-1. Interview about current driving habits
-2. Document what they do while driving now
-3. Test voice prototype in simulated car environment
-4. Observe comfort level with voice commands
+**Validation Method:**
+- Phase 2: Test interest in comparative insights
+- Post-MVP: Track data collection feasibility
 
-**Key Interview Questions:**
-- "How much time do you spend in your car on a typical day?"
-- "What do you do while driving between showings?"
-- "Do you take calls while driving? How?"
-- "Have you ever used voice assistants (Siri, Google) for work tasks?"
-- "What would you want to do while driving if you could?"
-
-**Success Criteria:**
-- ≥80% report 2+ hours driving daily
-- ≥60% currently take calls/texts while driving
-- ≥70% express interest in voice CRM commands
-- Prototype test shows successful voice task completion
+**Evidence Required:**
+- Interest in "how am I doing vs. other agents"
+- Willingness to share anonymized performance data
+- Technical feasibility confirmed
 
 **Kill Criteria:**
-- Driving time is less than expected (<1 hour)
-- Agents prefer to "decompress" while driving
-- Voice accuracy is unacceptable in car environment
-- Safety concerns override interest
+- Strong privacy concerns about any data sharing
+- No interest in benchmarking/comparison features
+- Legal/compliance blockers
 
 ---
 
-### Hypothesis 6: iMessage (Blue Bubble) Matters for Credibility
-**Priority: #6 (Medium)**
+## Go/No-Go Decision Framework
 
-**Claim:** Clients perceive blue bubble (iMessage) as more trustworthy/personal than green bubble (SMS), and agents care about this perception.
-
-**Testing Method:**
-1. Ask agents about client communication preferences
-2. Probe for awareness of blue vs. green bubble
-3. Test if agents would pay more for iMessage delivery
-4. Survey clients (if accessible) on perception
-
-**Key Interview Questions:**
-- "How do you typically communicate with clients? Phone, text, email?"
-- "Have you ever thought about whether your texts appear as blue or green bubbles?"
-- "Do clients ever comment on how you communicate with them?"
-- "If clients perceived your messages as more personal, would that matter to you?"
-
-**Success Criteria:**
-- ≥50% of agents are aware of blue/green distinction
-- ≥30% believe it affects client perception
-- Some agents actively avoid SMS for this reason
-- Willingness to pay premium for iMessage delivery
-
-**Kill Criteria:**
-- <20% aware of or care about blue/green distinction
-- Agents prioritize deliverability over perception
-- No evidence clients notice or care
-
-**Note:** Given Sendblue's technical reliability issues, this hypothesis helps determine if the complexity is worth pursuing at all.
-
----
-
-### Hypothesis 7: Document Generation Is a "Holy Shit" Moment
-**Priority: #7 (Medium)**
-
-**Claim:** Demonstrating instant document generation (listing descriptions, emails) will create strong emotional reaction and buying intent.
-
-**Testing Method:**
-1. Live demo with real agent data
-2. Time comparison: manual vs. AI generation
-3. Quality assessment by agents
-4. Measure emotional reaction and stated intent
-
-**Demo Script:**
-1. "Give me an address you're listing or recently listed"
-2. Pull basic property data
-3. Generate listing description in <30 seconds
-4. Ask: "How long does this usually take you?"
-5. Measure reaction
-
-**Success Criteria:**
-- Average manual time reported: >15 minutes
-- ≥80% rate AI output as "good" or better
-- Unprompted positive emotional reactions ("wow", "that's amazing")
-- ≥60% immediately ask "what else can it do?"
-
-**Kill Criteria:**
-- Agents don't find listing descriptions painful
-- Quality of AI output is unacceptable without heavy editing
-- Feature is seen as "nice to have" not "must have"
-
----
-
-### Hypothesis 8: Proactive AI Notifications Drive Engagement
-**Priority: #8 (Medium)**
-
-**Claim:** Agents will engage more with a CRM that reaches out to them versus one they have to remember to check.
-
-**Testing Method:**
-1. Ask about current notification preferences
-2. Describe proactive notification concept
-3. Gauge interest and potential frequency tolerance
-4. Test with working prototype if possible
-
-**Key Interview Questions:**
-- "How do you currently know when to follow up with someone?"
-- "Do you check your CRM daily? Weekly? Less?"
-- "Would you want your CRM to text you reminders?"
-- "How many notifications per day would be too many?"
-
-**Success Criteria:**
-- ≥70% admit they don't check CRM regularly
-- ≥60% express positive reaction to proactive notifications
-- Acceptable notification frequency: 3-10 per day
-- Agents describe scenarios where this would have helped
-
-**Kill Criteria:**
-- Agents prefer to be in control of when they engage
-- Notification fatigue concerns dominate
-- Existing tools already provide sufficient reminders
-
----
-
-### Hypothesis 9: NAR Settlement Has Changed Agent Behavior
-**Priority: #9 (Lower)**
-
-**Claim:** The NAR settlement has created urgency for agents to differentiate through service quality and efficiency.
-
-**Testing Method:**
-1. Ask about perceived impact of settlement
-2. Probe for changes in business practices
-3. Document any increased tool adoption
-4. Test if "efficiency" messaging resonates
-
-**Key Interview Questions:**
-- "How has the NAR settlement affected your business, if at all?"
-- "Have you changed anything about how you work since August 2024?"
-- "Are you doing anything differently to justify your commission?"
-- "Have you adopted any new tools or practices in the last year?"
-
-**Success Criteria:**
-- ≥50% report settlement has affected their thinking
-- Some agents describe specific practice changes
-- "Efficiency" and "value demonstration" resonate as needs
-
-**Kill Criteria:**
-- <30% report any meaningful impact
-- Business-as-usual sentiment dominates
-- Settlement is not a relevant buying trigger
-
-**Note:** Research shows actual commission rates have increased slightly post-settlement, suggesting the urgency narrative may be overstated.
-
----
-
-### Hypothesis 10: GoHighLevel Is Acceptable Infrastructure
-**Priority: #10 (Lower - Technical Validation)**
-
-**Claim:** GoHighLevel's API and reliability are sufficient to build a quality user experience on top of.
-
-**Testing Method:**
-1. Technical spike (see Technical Feasibility doc)
-2. Test all critical API endpoints
-3. Measure latency and reliability over 1 week
-4. Document any limitations or blockers
-
-**Test Criteria:**
-- Contact CRUD operations: <500ms latency
-- Message sending: <2s delivery
-- Webhook reliability: >99% delivery
-- API uptime: >99.5%
-- Rate limits: Sufficient for 100 users
-
-**Success Criteria:**
-- All critical operations meet latency targets
-- No blocking API limitations discovered
-- Error handling is manageable
-- Support responsive to questions
-
-**Kill Criteria:**
-- Critical functionality missing from API
-- Latency makes UX unacceptable
-- Rate limits are too restrictive
-- Platform stability concerns
-
----
-
-## Validation Execution Plan
-
-### Phase 1: Customer Discovery (Week 1-2)
-
-**Goal:** Validate Hypotheses 1, 2, 3 (Critical foundation)
-
-**Activities:**
-- 20 agent interviews (2-3 per day)
-- Structured interview guide
-- Recording and transcript analysis
-- Pattern identification
-
-**Sample Recruitment:**
-- Ben's network (5 agents)
-- Local Facebook groups (5 agents)
-- r/realtors outreach (5 agents)
-- Cold LinkedIn outreach (5 agents)
-
-**Deliverable:** Customer Discovery Report with evidence for/against each hypothesis
-
-### Phase 2: Prototype Testing (Week 2-3)
-
-**Goal:** Validate Hypotheses 4, 5, 7 (UX validation)
-
-**Activities:**
-- Build clickable Figma prototype
-- 10 user tests with prototype
-- A/B chat vs. dashboard tasks
-- Document generation demos
-- Voice input testing
-
-**Deliverable:** Prototype Test Results with success metrics
-
-### Phase 3: Technical Spikes (Week 2-3, parallel)
-
-**Goal:** Validate Hypothesis 10, inform Hypothesis 6
-
-**Activities:**
-- GHL API validation spike
-- Claude Agent SDK integration test
-- Sendblue reliability testing
-- Voice recognition testing
-
-**Deliverable:** Technical Spike Report with go/no-go recommendations
-
-### Phase 4: Commitment Testing (Week 3-4)
-
-**Goal:** Validate Hypothesis 3 with behavioral evidence
-
-**Activities:**
-- Landing page with $299/month price
-- "Founding member" waitlist with $50 deposit option
-- Track conversion from interest to commitment
-- Follow up with non-converters to understand objections
-
-**Deliverable:** Commitment metrics and objection analysis
-
----
-
-## Interview Guide: Customer Discovery
-
-### Opening (5 min)
-"Thanks for taking the time. I'm researching how real estate agents manage their client relationships and follow-ups. I'm not selling anything today—just trying to understand your world better. Everything you share will help me build something useful."
-
-### Current State (15 min)
-1. "Walk me through a typical day. When do you start? What happens first?"
-2. "Tell me about your last new lead. How did it come in? What did you do?"
-3. "What tools are you using right now to manage your business?"
-4. "How much are you spending on tools per month, roughly?"
-5. "When was the last time you felt overwhelmed by admin work? What was happening?"
-
-### Pain Points (15 min)
-6. "Tell me about a deal you lost recently. What happened?"
-7. "What's the most frustrating part of managing your leads?"
-8. "How do you decide who to follow up with each day?"
-9. "When's the last time you forgot to follow up with someone important?"
-10. "What do you do when a lead comes in while you're at a showing?"
-
-### Solutions Attempted (10 min)
-11. "What CRMs have you tried? What happened?"
-12. "Have you ever hired help? Why or why not?"
-13. "What's the most you've ever spent on a tool that actually helped?"
-14. "If you could wave a magic wand and fix one thing, what would it be?"
-
-### Closing (5 min)
-15. "Is there anything I should have asked that I didn't?"
-16. "Would you be open to testing something we build and giving feedback?"
-17. "Can you introduce me to any other agents who might have similar experiences?"
-
-### Probing Techniques
-- "Tell me more about that..."
-- "What happened next?"
-- "Why do you think that is?"
-- "How did that make you feel?"
-- "What did you do about it?"
-
----
-
-## Decision Framework
-
-### Go Decision (Proceed to Build)
+### GO: Proceed to MVP Development
 All of these must be true:
-- ≥70% of critical hypotheses validated (1, 2, 3)
-- ≥3 agents commit deposits
-- Technical spikes show feasibility
-- No fundamental business model blockers discovered
+- [ ] 3+ deposits collected ($150+ committed)
+- [ ] 60%+ interview validation on critical hypotheses
+- [ ] No disqualifying technical blockers
+- [ ] Founder confident in execution
 
-### Pivot Decision (Change Direction)
+### PIVOT: Change Direction
 Any of these trigger pivot discussion:
-- Target segment doesn't have strong pain
-- Willingness to pay is <$100/month
-- Conversation-first UI doesn't provide advantage
-- Technical blockers make core features unachievable
+- Target segment shows low pain (<40% validation)
+- Price sensitivity is <$100/month
+- Conversation-first concept doesn't resonate
+- Technical spikes reveal blockers
 
-### Kill Decision (Stop Project)
+### KILL: Stop Project
 Any of these trigger full stop:
-- No evidence of problem-solution fit after 20 interviews
-- Zero commitment (deposits) despite interest
-- Fundamental technical impossibility
-- Market has commoditized (competitor launches identical product)
+- Zero deposits despite 100+ landing page visitors
+- <40% validation across all critical hypotheses
+- Fundamental technical impossibility discovered
+- Competitor launches identical product with traction
+
+---
+
+## Validation Timeline
+
+### Week 1: Secondary Research
+| Day | Activity | Output |
+|-----|----------|--------|
+| 1-2 | Gemini Deep Research: Pain points | 25+ quotes |
+| 3-4 | Gemini Deep Research: Tool usage, pricing | 25+ quotes |
+| 5 | Synthesize findings, refine interview guide | Updated guide |
+| 5 | Begin interview recruitment | 5+ scheduled |
+
+### Week 2: Primary Research
+| Day | Activity | Output |
+|-----|----------|--------|
+| 1-5 | Conduct 10-15 interviews | Interview notes |
+| 5 | Synthesize interview findings | Hypothesis scores |
+| 5 | Collect any live deposits | Deposit count |
+
+### Week 3: Commitment Testing
+| Day | Activity | Output |
+|-----|----------|--------|
+| 1-2 | Build landing page | Live page |
+| 2-3 | Drive traffic (ads, outreach) | 100+ visitors |
+| 3-5 | Follow up with interested agents | Additional deposits |
+| 5 | **GO/NO-GO DECISION** | Decision documented |
 
 ---
 
 ## Validation Budget
 
-| Activity | Cost | Timeline |
-|----------|------|----------|
-| Customer interviews (20) | $0-500 (gift cards) | Week 1-2 |
-| Figma prototype | $0 (free tier) | Week 2 |
-| GHL Unlimited (testing) | $297 | Week 2-3 |
-| Sendblue testing | $99 | Week 2-3 |
-| Landing page (Carrd/similar) | $19 | Week 3 |
-| Ad spend (testing) | $200 | Week 3-4 |
-| **Total** | ~$1,200 | 4 weeks |
+| Item | Cost | Timing |
+|------|------|--------|
+| Gemini Deep Research | $20 (Pro subscription) | Week 1 |
+| Interview incentives | $200 (gift cards) | Week 2 |
+| Landing page (Carrd) | $19 | Week 3 |
+| Facebook ads test | $150 | Week 3 |
+| GHL account for tech spike | $497 (first month) | Week 2-3 |
+| **Total** | **~$890** | |
+
+*Note: GHL cost is also MVP development cost, not pure validation*
+
+---
+
+## Interview Recruitment Templates
+
+### Reddit DM
+```
+Hi [Name],
+
+I saw your post about [specific CRM frustration]. I'm researching how solo agents
+manage their business and would love to hear more about your experience.
+
+Would you have 20 minutes for a quick call? Not selling anything—just trying to
+understand the real challenges. Happy to send you a $20 Amazon card for your time.
+
+Thanks,
+[Your name]
+```
+
+### LinkedIn Message
+```
+Hi [Name],
+
+I noticed you're a [title] in [market]. I'm researching how real estate agents
+manage client follow-up and communication—would love to hear your perspective.
+
+Would you have 20 minutes this week? Not a sales call—just learning. Happy to
+share what I learn from other agents in return.
+
+Best,
+[Your name]
+```
+
+### Personal Network
+```
+Hey [Name],
+
+I'm working on a project for real estate agents and trying to understand the
+real pain points around CRM and follow-up. Since you're in the business,
+would you have 20-30 minutes to share your experience?
+
+I'd really appreciate your honest perspective—the more real, the better.
+
+[Your name]
+```
+
+---
+
+## Post-Validation: What's Next
+
+### If GO:
+1. Begin MVP development (Week 4-7)
+2. Onboard deposit customers as beta testers
+3. Iterate based on feedback
+4. Scale customer acquisition
+
+### If PIVOT:
+Options to explore:
+- Different segment (team leads instead of solo?)
+- Different price point ($99/mo with usage limits?)
+- Different core feature (document-only tool?)
+- Different infrastructure (not GHL?)
+
+### If KILL:
+- Return any deposits
+- Document learnings
+- Consider: Is there a different problem worth solving in this space?
 
 ---
 
 ## Sources & References
 
-- "The Mom Test" by Rob Fitzpatrick - Interview methodology
-- [Van Westendorp Price Sensitivity](https://www.qualtrics.com/experience-management/research/van-westendorp-pricing/) - Pricing methodology
-- [Real Estate Lead Statistics](https://agentzap.ai/blog/real-estate-lead-statistics) - Speed-to-lead data
-- [NAR Research & Statistics](https://www.nar.realtor/research-and-statistics) - Agent demographics
-- [Real Estate CRM Statistics](https://llcbuddy.com/data/real-estate-crm-software-statistics/) - Adoption rates
+- "The Mom Test" by Rob Fitzpatrick
+- Van Westendorp Price Sensitivity Meter methodology
+- NAR Member Profile (agent demographics)
+- r/realtors subreddit
+- BiggerPockets real estate forums
+
+*Last updated: January 2026*

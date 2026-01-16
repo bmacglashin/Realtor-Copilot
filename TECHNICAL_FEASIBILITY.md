@@ -1,21 +1,73 @@
 # Technical Feasibility Assessment: Realty Copilot
-*Last Updated: January 2026*
+*Last Updated: January 2026 (v2)*
 
 ## Executive Summary
 
-**Overall Technical Feasibility: 🟡 MEDIUM-HIGH (Achievable with caveats)**
+**Overall Technical Feasibility: 🟢 HIGH (Achievable with focused scope)**
 
-The core technical architecture is sound and buildable within the stated constraints. However, several components carry meaningful risk that could impact timeline or require pivots. The iMessage integration via Sendblue is the highest-risk item, followed by GoHighLevel platform dependency.
+The revised MVP scope (Chat Interface + GHL Contacts + Document Generation + Google Drive) is technically straightforward and achievable within 4 weeks using AI-assisted development. The previous high-risk items (Sendblue iMessage) have been deferred to post-MVP.
 
 | Component | Risk Level | Buildable in 4 Weeks? | Notes |
 |-----------|------------|----------------------|-------|
 | Claude Agent SDK Integration | 🟢 Low | Yes | Mature SDK, strong docs |
-| GoHighLevel API Wrapper | 🟡 Medium | Yes | Rate limits need consideration |
-| Sendblue iMessage | 🔴 High | Partial | Works but has reliability issues |
-| Voice Input/Commands | 🟡 Medium | Basic yes, refined no | Web Speech API for MVP |
-| Conversation-First UI | 🟢 Low | Yes | Standard chat interface |
+| GoHighLevel API Wrapper | 🟢 Low | Yes | Well-documented REST API |
+| Chat Interface (Web) | 🟢 Low | Yes | Standard implementation |
+| Voice Input (Web Speech) | 🟡 Medium | Basic yes | Browser API, some edge cases |
 | Document Generation | 🟢 Low | Yes | Claude excels at this |
-| Negotiation RAG | 🟡 Medium | No | Post-MVP feature |
+| Google Drive Integration | 🟢 Low | Yes | Standard OAuth + API |
+| ~~Sendblue iMessage~~ | ~~🔴 High~~ | N/A | **Deferred to V2** |
+
+**Key Technical Insight:** GoHighLevel's $497/month Agency Pro plan provides unlimited sub-accounts with full API access. This creates exceptional unit economics—our infrastructure cost is fixed regardless of user count.
+
+---
+
+## Infrastructure Economics (Corrected)
+
+### GoHighLevel Pricing Clarification
+
+| Plan | Monthly Cost | Sub-Accounts | API Access | Our Use Case |
+|------|-------------|--------------|------------|--------------|
+| Starter | $97 | 3 max | Limited | Not viable |
+| Unlimited | $297 | Unlimited | Full | Could work |
+| **Agency Pro** | **$497** | **Unlimited** | **Full + OAuth** | **Recommended** |
+
+**Why Agency Pro ($497):**
+- Unlimited sub-accounts (one per agent)
+- Full API access for all operations
+- OAuth 2.0 for secure agent authorization
+- SaaS rebilling capability (future B2B)
+- White-label mobile app (future feature)
+
+### Cost Structure (Fixed + Variable)
+
+**Fixed Costs:**
+| Item | Monthly Cost | Notes |
+|------|-------------|-------|
+| GoHighLevel Agency Pro | $497 | Regardless of user count |
+| Cloud Hosting (Vercel/Railway) | $50-100 | Scales slowly |
+| Monitoring (Sentry) | $26 | Team plan |
+| **Total Fixed** | **~$600** | |
+
+**Variable Costs (Per Agent):**
+| Item | Low Estimate | High Estimate | Notes |
+|------|--------------|---------------|-------|
+| Claude API | $5/mo | $20/mo | Based on usage modeling |
+| Google Drive | $0 | $0 | Free tier sufficient |
+| **Total Variable** | **$5-20/agent** | | |
+
+### Breakeven Analysis
+
+At $199/mo Solo price and $600 fixed + $10/agent variable:
+
+| Agents | Revenue | Costs | Net | Margin |
+|--------|---------|-------|-----|--------|
+| 5 | $995 | $650 | $345 | 35% |
+| 10 | $1,990 | $700 | $1,290 | 65% |
+| **15** | **$2,985** | **$750** | **$2,235** | **75%** |
+| 50 | $9,950 | $1,100 | $8,850 | 89% |
+| 100 | $19,900 | $1,600 | $18,300 | 92% |
+
+**Breakeven: ~15 agents**
 
 ---
 
@@ -25,200 +77,173 @@ The core technical architecture is sound and buildable within the stated constra
 
 **Risk Level:** 🟢 **Low**
 
-**Current State of Technology:**
+**Current State:**
 - Claude Agent SDK is production-ready (powers Claude Code)
-- MCP (Model Context Protocol) has 16,000+ community servers
-- Adopted by OpenAI, Microsoft, GitHub (May 2025)
-- November 2025 spec added parallel tool calls, better context control
+- MCP protocol has 16,000+ community servers
+- Adopted by OpenAI, Microsoft, GitHub
+- November 2025 spec added parallel tool calls
 
 **What We Need to Build:**
-- Custom MCP tools for GHL API operations
-- Message sync tool for Sendblue
-- Document generation tool with template support
-- Calendar/scheduling tool
+- GHL Contacts MCP tool
+- GHL Pipelines MCP tool
+- Document Generation tool
+- Google Drive tool
 
-**Implementation Approach:**
+**Implementation Pattern:**
 ```
-User Input (text/voice)
-    → Claude Agent SDK
-    → MCP Tool Router
-    → [GHL API | Sendblue | Doc Gen | Calendar]
-    → Response back through Claude
-    → User Output
+User: "Add Sarah Johnson, buyer, looking in Buckhead, budget 500K"
+    ↓
+Claude Agent SDK (understands intent)
+    ↓
+MCP Tool Router (selects GHL Contacts tool)
+    ↓
+GHL API (creates contact)
+    ↓
+Response: "Got it. I've added Sarah Johnson as a buyer..."
 ```
 
-**Technical Spike Recommended:**
-1. Build minimal MCP tool that creates a GHL contact
-2. Confirm latency and error handling patterns
-3. Test context window management for long conversations
+**Technical Spike (1 day):**
+1. Build minimal MCP server with one GHL operation
+2. Connect to Claude Agent SDK
+3. Test natural language → API flow
+4. Measure latency (target: <3 seconds)
 
 **Evidence of Feasibility:**
 - "The SDK enables you to build AI agents that autonomously read files, run commands, search the web, edit code, and more"
-- Production-grade: "provides the same tools, agent loop, and context management that power Claude Code"
-- Pre-built skills exist for document generation (Word, PDF)
-
-**Key Risks:**
-- API costs could exceed projections if conversations are long
-- Context window limits may require careful message pruning
-- November 2025 security concerns require attention to prompt injection
+- Production-grade: same architecture powers Claude Code
+- Pre-built patterns for document generation
 
 ---
 
-### 2. GoHighLevel API Wrapper
+### 2. GoHighLevel API Integration
 
-**Risk Level:** 🟡 **Medium**
+**Risk Level:** 🟢 **Low**
 
 **API Capabilities (Confirmed):**
-- Full CRUD for contacts, deals, pipelines
-- SMS/email messaging
-- Calendar and appointments
-- Webhooks for real-time updates
-- OAuth 2.0 authentication
+
+| Category | Operations | API Quality |
+|----------|-----------|-------------|
+| Contacts | CRUD, search, tags, custom fields | Excellent |
+| Pipelines | CRUD deals, move stages, values | Good |
+| Messaging | SMS/email send, history retrieve | Good |
+| Calendar | Create/modify appointments | Good |
+| Webhooks | Real-time updates | Excellent |
 
 **Rate Limits:**
 - **Burst:** 100 requests per 10 seconds per resource
 - **Daily:** 200,000 requests per day per app
-- These are per-app, not per-user—scales well for multi-tenant
+- **Assessment:** More than sufficient for 500+ agents
 
-**Pricing Impact:**
-- API access requires **Unlimited plan ($297/month)** or higher
-- PRD assumed $97/month (Starter plan)—**this needs correction**
-- Actual GHL cost: $297/month, not $97/month
+**API Code Sample:**
+```javascript
+// Create contact in GHL
+const createContact = async (data) => {
+  const response = await fetch('https://services.leadconnectorhq.com/contacts/', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+      'Version': '2021-07-28'
+    },
+    body: JSON.stringify({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      tags: data.tags,
+      customFields: data.customFields
+    })
+  });
+  return response.json();
+};
+```
 
-**Critical Gap Identified:**
-The PRD states GHL infrastructure costs ~$97/month. This is incorrect:
-- Starter ($97/mo): No API access
-- Unlimited ($297/mo): Includes API access
-- SaaS Pro ($497/mo): Full white-label + API
-
-**Revised Unit Economics:**
-| Line Item | PRD Estimate | Actual |
-|-----------|--------------|--------|
-| GHL Cost | $97/mo | $297/mo |
-| Claude API | $50-100/mo | $50-100/mo |
-| Sendblue | Not listed | $99/mo |
-| **Total COGS** | ~$150/mo | ~$500/mo |
-| Price | $199/mo | $199/mo |
-| **Margin** | 40-50% | **NEGATIVE** |
-
-**[CRITICAL]** At $199/mo price with $500/mo COGS, the business model doesn't work. Options:
-1. Raise price to $349-399/mo
-2. Use GHL SaaS mode to resell (changes economics)
-3. Build on alternative infrastructure
-4. Negotiate volume pricing with GHL
-
-**Technical Spike Recommended:**
-1. Confirm API access requirements across GHL tiers
-2. Test all critical endpoints (contacts, messaging, pipelines)
-3. Evaluate GHL SaaS mode vs. direct subscription model
-
-**What Works Well:**
-- REST API is well-documented
-- SDKs available
-- Webhooks enable real-time sync
-- Rate limits are generous for expected usage
-
-**What Doesn't Work:**
-- "Steep learning curve" reported even for GHL users
-- "Email deliverability issues" noted in reviews
-- API occasionally returns inconsistent error formats
+**Technical Spike (1 day):**
+1. Create GHL Agency Pro account
+2. Test contact CRUD operations
+3. Test pipeline operations
+4. Document webhook setup
+5. Measure latency (target: <500ms)
 
 ---
 
-### 3. iMessage Integration (Sendblue)
+### 3. Chat Interface (Web)
 
-**Risk Level:** 🔴 **High**
+**Risk Level:** 🟢 **Low**
 
-**What Sendblue Does:**
-- Routes messages through Mac servers to deliver as iMessage
-- Falls back to SMS for Android recipients
-- API-first, designed for automation
-- End-to-end encrypted
+**Technology Choice:** React + Tailwind CSS
 
-**Claimed Benefits:**
-- 70% boost in response rates vs. SMS
-- Up to 400% increase in delivery rates (case studies)
-- Flat rate pricing (not per-segment like SMS)
+**Design Requirements:**
+- Chat window dominates viewport (80%+)
+- Voice button prominent and accessible
+- Message history with scroll
+- Typing indicators
+- Quick action suggestions
 
-**Confirmed Limitations:**
-1. **Number Switching:** "During conversations, the numbers switch unexpectedly"
-   - This is a dealbreaker for agent/client relationships
-   - Client may think they're talking to different people
+**Implementation Approach:**
+```jsx
+// Core chat component structure
+<ChatContainer>
+  <MessageList messages={messages} />
+  <InputArea>
+    <TextInput onSubmit={sendMessage} />
+    <VoiceButton onTranscript={sendMessage} />
+  </InputArea>
+  <Suggestions context={context} />
+</ChatContainer>
+```
 
-2. **Volume Limits:** "Limitation on the number of messages that can be sent from one line"
-   - High-volume agents may hit caps
-   - Unclear what happens at limits
+**Estimated Build Time:** 3-5 days for functional MVP
 
-3. **iOS Only:** Android-to-Android messages not supported
-   - Must fall back to SMS (defeats purpose)
-
-4. **No International:** Limited to US numbers
-
-5. **GHL Integration Issues:** One reviewer noted: "I don't love that Sendblue has to work through GoHighLevel, as GoHighLevel is challenging to work with"
-
-**Pricing:**
-- $99/month for 5,000 messages
-- Beats Twilio per-message pricing at volume
-
-**Technical Spike Recommended:**
-1. Send 100 test messages across 48 hours
-2. Document number switching frequency
-3. Test fallback behavior for Android recipients
-4. Measure true delivery rates vs. SMS baseline
-
-**Alternative: RCS (Rich Communication Services)**
-
-RCS is emerging as a viable alternative:
-- iOS 18 added RCS support (68% of iPhones upgraded)
-- 1 billion+ RCS messages daily in US (Jan 2025)
-- Business messaging growing 50% YoY
-- Cross-platform (works iPhone to Android)
-
-**RCS Advantages:**
-- No Mac server infrastructure needed
-- More stable than Sendblue routing
-- Growing carrier support
-
-**RCS Disadvantages:**
-- Still "green bubble" on iPhone (not iMessage)
-- Business enablement varies by carrier
-- Less mature than Sendblue API
-
-**Recommendation:**
-Start with SMS via GHL (proven, simple), test Sendblue in parallel, evaluate RCS for V2. The "blue bubble" benefit may not justify the reliability risks for MVP.
+**Libraries:**
+- React Query for state management
+- Tailwind for styling
+- Web Speech API for voice
+- WebSocket for real-time updates
 
 ---
 
-### 4. Voice Input and Commands
+### 4. Voice Input (Web Speech API)
 
 **Risk Level:** 🟡 **Medium**
 
-**MVP Approach (Web Speech API):**
-- Browser-native speech recognition
+**MVP Approach:**
+- Browser-native Web Speech API
 - No additional infrastructure
 - ~95% accuracy for clear speech
-- Free, no API costs
+- Free (no API costs)
 
-**Limitations:**
-- Requires internet connection
+**Implementation:**
+```javascript
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.continuous = false;
+recognition.interimResults = true;
+recognition.lang = 'en-US';
+
+recognition.onresult = (event) => {
+  const transcript = event.results[0][0].transcript;
+  // Send to Claude Agent SDK
+};
+```
+
+**Known Limitations:**
+- Safari iOS requires user gesture to start
 - Background noise impacts accuracy
-- Limited offline capability
-- iOS Safari has restrictions
+- No offline support
+- Accents may reduce accuracy
 
-**Production Approach (Post-MVP):**
-- Whisper API or similar for transcription
-- Custom wake word detection
-- Noise cancellation preprocessing
-- ~$0.006/minute for transcription
+**Mitigation:**
+- Clear visual feedback during recording
+- Text input always available as fallback
+- Error messages guide users on noise issues
 
-**Lock Screen Widget (iOS):**
-- Requires native iOS app (not web)
-- Apple restricts lock screen widget functionality
-- Voice activation requires specific entitlements
-- Timeline: 8-12 weeks for native app with widget
-
-**Recommendation:**
-MVP uses web-based voice input. Lock screen widget is a V2/V3 feature requiring native app development. Don't promise this for initial launch.
+**Technical Spike (0.5 days):**
+- Test recognition of agent names
+- Test address recognition
+- Test in simulated car environment
+- Document accuracy rates
 
 ---
 
@@ -226,261 +251,253 @@ MVP uses web-based voice input. Lock screen widget is a V2/V3 feature requiring 
 
 **Risk Level:** 🟢 **Low**
 
-Claude excels at document generation. This is the lowest-risk, highest-impact feature.
+This is Claude's strength. Document generation is the lowest-risk, highest-impact feature.
 
-**Validated Capabilities:**
-- Listing descriptions from property data
-- Email drafts with personalization
-- Offer summary letters
-- Market analysis narratives
+**Document Types (MVP):**
+1. Listing descriptions
+2. Client emails (intro, follow-up, check-in)
+3. Offer summary letters
+4. Showing feedback summaries
 
-**Implementation:**
+**Implementation Pattern:**
 ```python
-# Example MCP tool for listing description
 def generate_listing_description(property_data: dict) -> str:
     prompt = f"""Generate a compelling listing description for:
+
     Address: {property_data['address']}
+    Price: ${property_data['price']:,}
     Beds/Baths: {property_data['beds']}/{property_data['baths']}
-    Sq Ft: {property_data['sqft']}
-    Features: {property_data['features']}
+    Square Feet: {property_data['sqft']:,}
+    Features: {', '.join(property_data['features'])}
 
-    Style: Professional, warm, highlighting lifestyle benefits.
-    Length: 150-200 words."""
+    Requirements:
+    - Professional but warm tone
+    - Highlight lifestyle benefits
+    - 150-200 words
+    - End with call to action
+    """
 
-    return claude.complete(prompt)
+    return claude.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=500,
+        messages=[{"role": "user", "content": prompt}]
+    )
 ```
 
 **Cost Estimate:**
 - Average document: ~500 tokens output
-- Cost per document: ~$0.0075 (Sonnet) to $0.075 (Opus)
-- 50 documents/month/user: $0.38 to $3.75/month
-- Well within budget
-
-**Template System:**
-Pre-build templates for:
-1. Listing descriptions (multiple styles)
-2. Buyer welcome emails
-3. Seller consultation follow-ups
-4. Offer summary letters
-5. Weekly market updates
-6. Anniversary/check-in messages
+- Cost per document: ~$0.0075 (Sonnet)
+- 50 documents/month/agent: ~$0.38/month
+- Negligible cost impact
 
 ---
 
-### 6. Negotiation RAG Model
+### 6. Google Drive Integration
 
-**Risk Level:** 🟡 **Medium**
+**Risk Level:** 🟢 **Low**
 
-**What's Proposed:**
-AI-powered negotiation suggestions based on training data from books, forums, and learned strategies.
+**Purpose:** Store generated documents for agent access
 
-**Feasibility Assessment:**
+**Implementation:**
+1. OAuth 2.0 flow for agent authorization
+2. Create dedicated folder per agent
+3. Save documents as Google Docs
+4. Return shareable links
 
-**Training Data Sources:**
-- Books ("Never Split the Difference")—copyright concerns
-- Public forums (Reddit, BiggerPockets)—fair use likely OK
-- Agent-contributed scenarios—requires data collection
-- Synthetic data from Claude—possible but quality varies
-
-**Technical Approach:**
-1. Vector database (Pinecone, Weaviate) for scenario embeddings
-2. RAG retrieval of similar situations
-3. Claude generates response options based on retrieved context
-
-**Legal Concerns:**
-- Using copyrighted book content requires licensing
-- Forum content may have TOS restrictions
-- Need legal review before commercializing
-
-**Recommendation:**
-Defer to V2. For MVP, use Claude's base knowledge for negotiation suggestions without custom RAG. Claude already knows "Never Split the Difference" concepts—test if base knowledge is sufficient before building custom retrieval.
-
----
-
-## MVP Technical Architecture (Revised)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     User Interface Layer                      │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
-│  │   Web App    │  │  Mobile Web  │  │  Voice Input │       │
-│  │  (React/Vue) │  │   (PWA)      │  │(Web Speech)  │       │
-│  └──────────────┘  └──────────────┘  └──────────────┘       │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Claude Agent SDK Layer                      │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │  Agent Loop: Input → Tool Selection → Execution →    │   │
-│  │              Response Generation                      │   │
-│  └──────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      MCP Tools Layer                          │
-│  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌──────────┐ │
-│  │ GHL        │ │ SMS/Email  │ │ Document   │ │ Calendar │ │
-│  │ Contacts   │ │ Messaging  │ │ Generator  │ │ Sync     │ │
-│  └────────────┘ └────────────┘ └────────────┘ └──────────┘ │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Infrastructure Layer                       │
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │              GoHighLevel (Unlimited Plan)               │ │
-│  │  - Contacts DB    - Pipelines    - Email/SMS           │ │
-│  │  - Calendar       - Webhooks     - File Storage        │ │
-│  └────────────────────────────────────────────────────────┘ │
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │         Sendblue (Optional - Evaluate in Spike)        │ │
-│  └────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
+**API Operations:**
+```javascript
+// Save document to Google Drive
+const saveDocument = async (content, filename, folderId) => {
+  const response = await drive.files.create({
+    requestBody: {
+      name: filename,
+      mimeType: 'application/vnd.google-apps.document',
+      parents: [folderId]
+    },
+    media: {
+      mimeType: 'text/plain',
+      body: content
+    }
+  });
+  return response.data;
+};
 ```
 
----
+**Cost:** Free (Google Drive API has generous quotas)
 
-## Technical Spikes Required Before Building
-
-### Spike 1: GHL API Validation (2 days)
-**Objective:** Confirm API capabilities and pricing tier requirements
-**Tasks:**
-- [ ] Create GHL Unlimited account
-- [ ] Test contact CRUD operations
-- [ ] Test messaging endpoints
-- [ ] Test pipeline operations
-- [ ] Document rate limit behavior
-- [ ] Measure API latency
-
-**Success Criteria:** All critical operations work, latency <500ms, rate limits sufficient for 100 users
-
-### Spike 2: Claude Agent SDK MCP Tool (2 days)
-**Objective:** Validate MCP tool architecture for GHL integration
-**Tasks:**
-- [ ] Build minimal MCP server with GHL contact tool
-- [ ] Connect to Claude Agent SDK
-- [ ] Test natural language → API operation flow
-- [ ] Measure end-to-end latency
-- [ ] Test error handling
-
-**Success Criteria:** "Add contact John Smith" creates GHL contact in <3 seconds
-
-### Spike 3: Sendblue Reliability (3 days)
-**Objective:** Determine if Sendblue is viable for MVP
-**Tasks:**
-- [ ] Send 100 messages over 48 hours
-- [ ] Track number switching incidents
-- [ ] Test delivery to iPhone vs. Android
-- [ ] Document failure modes
-- [ ] Compare delivery rates to GHL SMS
-
-**Success Criteria:** <5% number switching rate, >95% delivery rate
-**Go/No-Go:** If criteria not met, defer iMessage to V2
-
-### Spike 4: Voice Input UX (2 days)
-**Objective:** Validate voice-to-text quality for real estate commands
-**Tasks:**
-- [ ] Build minimal voice input with Web Speech API
-- [ ] Test recognition of agent names, addresses, property terms
-- [ ] Test in simulated car environment (noise)
-- [ ] Measure accuracy rate
-- [ ] Test Safari iOS compatibility
-
-**Success Criteria:** >90% accuracy for typical commands in quiet environment
+**Technical Spike (0.5 days):**
+- Test OAuth flow
+- Test document creation
+- Verify sharing permissions
 
 ---
 
-## Alternative Approaches if Primary Fails
+## Deferred Components
 
-### If Sendblue Fails → SMS + RCS
-Use GHL native SMS for MVP. Evaluate RCS providers (Sinch, Bandwidth) for V2. Accept "green bubble" limitation initially.
+### Sendblue iMessage (V2)
 
-### If GHL Pricing Breaks Model → Alternative Infrastructure
-Options:
-1. **Twilio + Airtable:** More expensive per-unit but no platform fee
-2. **HubSpot Starter:** $20/user/month, good API, but less real-estate-specific
-3. **Build Custom:** Supabase + custom schema; highest effort but no platform risk
+**Why Deferred:**
+- Documented reliability issues (number switching)
+- Adds $99-250/month to COGS
+- SMS has 98% open rates—iMessage benefit unvalidated
+- Technical complexity not justified for MVP
 
-### If Claude API Costs Too High → Model Tiering
-Use Claude Haiku ($0.25/1M tokens) for simple operations:
-- Contact lookups
-- Basic follow-up drafts
-- Calendar queries
+**V2 Evaluation Criteria:**
+- Agent interviews indicate strong iMessage preference (>50%)
+- Sendblue passes reliability spike (<5% number switching)
+- RCS adoption reaches critical mass as alternative
 
-Reserve Claude Sonnet ($3/1M tokens) for complex tasks:
-- Document generation
-- Negotiation suggestions
-- Multi-step workflows
+### Proactive Notifications (V1.5)
 
----
+**Why Deferred:**
+- Requires notification infrastructure (SMS or push)
+- Needs careful UX design to avoid notification fatigue
+- Core value can be tested without proactive features
 
-## Cost Projection (Revised)
+**V1.5 Implementation:**
+- SMS reminders via GHL
+- Progressive web app push notifications
+- "Morning briefing" daily digest
 
-### Per-User Monthly Costs
+### Native Mobile App (V2)
 
-| Component | Low Usage | Medium Usage | High Usage |
-|-----------|-----------|--------------|------------|
-| GHL (amortized) | $30* | $30* | $30* |
-| Claude API | $15 | $45 | $100 |
-| Sendblue | $20** | $50** | $100** |
-| Infrastructure | $5 | $5 | $5 |
-| **Total COGS** | $70 | $130 | $235 |
-
-*Assumes 10 users per GHL account in SaaS mode ($297/10)
-**Based on message volume estimates
-
-### Pricing Recommendation
-
-For sustainable margins:
-- **Minimum viable price:** $249/month (47-70% margin depending on usage)
-- **Recommended price:** $299/month (52-77% margin)
-- **Or:** Usage-based tier for high-volume users
+**Why Deferred:**
+- Web PWA sufficient for MVP validation
+- Native app requires iOS/Android development
+- Lock screen widget requires specific entitlements
+- 8-12 weeks additional development
 
 ---
 
-## 4-Week MVP Scope (Revised & Realistic)
+## 4-Week MVP Build Plan
 
 ### Week 1: Foundation
-- Claude Agent SDK setup
-- GHL Unlimited account + API integration
-- Basic MCP tools (contacts, messages)
-- Web chat interface scaffold
+**Goal:** Core infrastructure working
+
+| Day | Task | Output |
+|-----|------|--------|
+| 1-2 | GHL Agency Pro setup + API testing | Confirmed API access |
+| 2-3 | Claude Agent SDK setup + MCP scaffold | Hello world MCP tool |
+| 3-4 | GHL Contacts MCP tool | Create/read/update contacts |
+| 4-5 | Basic chat interface | Input → response flow |
 
 ### Week 2: Core Features
-- Natural language contact management
-- Message drafting (GHL SMS, not Sendblue)
-- Basic document generation (listing descriptions)
-- Conversation history persistence
+**Goal:** Primary use cases functional
 
-### Week 3: Intelligence Layer
-- Proactive follow-up suggestions
-- Daily briefing generation
-- Pipeline status queries
-- Basic voice input (Web Speech API)
+| Day | Task | Output |
+|-----|------|--------|
+| 1-2 | Natural language contact management | "Add Sarah..." works |
+| 2-3 | Document generation tool | Listing descriptions |
+| 3-4 | Google Drive integration | Documents saved |
+| 4-5 | Conversation persistence | History maintained |
 
-### Week 4: Polish & Testing
-- Error handling and edge cases
-- 10-agent beta onboarding
-- Feedback collection system
-- Performance optimization
+### Week 3: Enhancement
+**Goal:** Voice and polish
 
-### Deferred to V2:
-- iMessage/Sendblue integration
-- Lock screen widget
-- Native mobile app
-- Negotiation RAG model
-- Team features
+| Day | Task | Output |
+|-----|------|--------|
+| 1-2 | Voice input integration | Web Speech API |
+| 2-3 | GHL Pipeline MCP tool | Deal status queries |
+| 3-4 | Error handling + edge cases | Graceful failures |
+| 4-5 | UI polish + mobile responsiveness | Looks professional |
+
+### Week 4: Testing
+**Goal:** Beta-ready
+
+| Day | Task | Output |
+|-----|------|--------|
+| 1-2 | Internal testing + bug fixes | Stable system |
+| 2-3 | Beta onboarding flow | Self-service signup |
+| 3-4 | 5 beta agents onboarded | Real usage data |
+| 4-5 | Feedback collection + iteration | Prioritized backlog |
+
+---
+
+## Technical Risks and Mitigations
+
+### Risk 1: Claude API Latency
+**Risk:** Response time too slow for conversational feel
+**Probability:** Low
+**Mitigation:**
+- Use streaming responses
+- Show typing indicator
+- Target <3 second total response time
+
+### Risk 2: GHL API Limitations
+**Risk:** Discover missing functionality mid-build
+**Probability:** Low (well-documented API)
+**Mitigation:**
+- Complete API spike before building
+- Have fallback approaches documented
+- Build abstraction layer for future migration
+
+### Risk 3: Voice Recognition Accuracy
+**Risk:** Web Speech API not accurate enough
+**Probability:** Medium
+**Mitigation:**
+- Text input always available
+- Clear feedback on recognition
+- Defer car environment optimization to V2
+
+### Risk 4: Non-Technical Execution
+**Risk:** AI coding tools insufficient for complexity
+**Probability:** Low-Medium
+**Mitigation:**
+- Use established patterns (React, REST APIs)
+- Budget for fractional CTO review
+- Scope MVP aggressively
+
+---
+
+## Technology Stack Summary
+
+| Layer | Technology | Rationale |
+|-------|------------|-----------|
+| Frontend | React + Tailwind | Fast development, good docs |
+| Backend | Node.js + Express | JavaScript ecosystem |
+| AI Orchestration | Claude Agent SDK | Production-ready, MCP support |
+| AI Models | Haiku (simple) + Sonnet (complex) | Cost optimization |
+| Infrastructure | GoHighLevel Agency Pro | Unlimited accounts, full API |
+| Document Storage | Google Drive | Free, familiar to users |
+| Hosting | Vercel or Railway | Simple deployment |
+| Database | Supabase | If needed beyond GHL |
+
+---
+
+## Pre-Build Checklist
+
+Before starting development:
+
+- [ ] GHL Agency Pro account created
+- [ ] GHL API spike completed (contacts, pipelines work)
+- [ ] Claude API key obtained
+- [ ] Claude Agent SDK "hello world" running
+- [ ] Google Cloud project created with Drive API enabled
+- [ ] Vercel/Railway account created
+- [ ] GitHub repository initialized
+
+---
+
+## Success Criteria (Week 4)
+
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| System uptime | >99% | Monitoring |
+| Response latency | <3 seconds | End-to-end timing |
+| Voice accuracy | >90% | User testing |
+| Document quality | "Good" rating | User feedback |
+| Beta agents active | 10 | Usage logs |
+| Critical bugs | 0 | Issue tracker |
 
 ---
 
 ## Sources
 
-- [GoHighLevel API Documentation](https://marketplace.gohighlevel.com/docs/) - Official API docs
-- [GoHighLevel Pricing](https://ghl-services-playbooks-automation-crm-marketing.ghost.io/gohighlevel-pricing-plans-explained-features-value-cost-comparison-2025/) - Plan comparison
-- [Claude Agent SDK Overview](https://docs.claude.com/en/api/agent-sdk/overview) - Official documentation
-- [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) - November 2025 release
-- [Sendblue Reviews](https://www.g2.com/products/sendblue/reviews) - G2 user feedback
-- [RCS iOS Adoption](https://www.infobip.com/blog/apple-rcs) - Infobip analysis
-- [Sinch RCS Statistics](https://sinch.com/blog/rcs-statistics/) - Market data
+- [GoHighLevel API Documentation](https://marketplace.gohighlevel.com/docs/)
+- [GoHighLevel Pricing](https://www.gohighlevel.com/pricing)
+- [Claude Agent SDK Documentation](https://docs.anthropic.com/en/docs/build-with-claude/agent-sdk)
+- [MCP Specification](https://modelcontextprotocol.io/)
+- [Web Speech API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+- [Google Drive API](https://developers.google.com/drive/api)
+
+*Last updated: January 2026*
