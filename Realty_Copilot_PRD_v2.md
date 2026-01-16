@@ -32,7 +32,7 @@
 > - Scaling solo agents (8-20 deals/year): ~350,000 agents
 > - Technology-forward subset (likely early adopters): ~70,000-100,000
 > - **Year 1 realistic addressable market:** 5,000-10,000 agents
-> - **At blended $199/mo:** $12M-$24M potential ARR if we capture 5-10% of addressable
+> - **At $149-249/mo (tiered):** $12M-$24M potential ARR if we capture 5-10% of addressable
 
 **Business Model:** `[CRITICAL - UPDATED v2.1]` Tiered pricing model
 
@@ -283,7 +283,22 @@ FOR scaling solo agents (8-20 deals/year) WHO are at their productivity cliff an
 
 The MVP demonstrates the core "Claude Code for real estate" experience. The goal is to make agents say "holy shit" within 60 seconds of their first interaction.
 
-### 5.2 Must Ship (Weeks 1-4) - Core Tier Features
+### 5.2 MVP Scope (Weeks 1-4) — Core Tier Features `[FINALIZED]`
+
+**Must Ship:**
+
+- [ ] Chat interface home page (Claude-style, conversation-first)
+- [ ] Voice input via Web Speech API
+- [ ] Natural language understanding via Claude Agent SDK
+- [ ] Document generation: BRA, touring agreements, listing descriptions (<60 seconds)
+- [ ] <3 second response times for all interactions
+- [ ] Contact management via conversation
+- [ ] Pipeline/deal tracking via conversation
+- [ ] Daily briefings ("Who needs attention today?")
+- [ ] Compliance timestamping (GPS + time + signature events)
+- [ ] GHL integration (contacts, pipelines—invisible to user)
+- [ ] Mobile-optimized PWA
+- [ ] SMS sending via GHL
 
 | Feature | Description | Success Metric |
 |---------|-------------|----------------|
@@ -331,26 +346,44 @@ Each morning, Copilot proactively tells agents:
 - "The Thompson inspection is tomorrow—confirm with inspector?"
 - "Sarah Chen hasn't responded in 5 days—draft a check-in?"
 
-### 5.3 Deferred to V1 (Growth Tier Features)
+### 5.3 V1 Scope (Weeks 5-12) — Growth Tier Features `[FINALIZED]`
 
-These features ship after MVP validation, targeting 12+ deal/year agents:
+These features ship after MVP validation, targeting 12+ deal/year agents who upgrade to Growth tier:
 
-| Feature | Description | Why Deferred |
-|---------|-------------|--------------|
-| **Voice Lead Qualification** | 24/7 AI agent handles inbound calls | Complex to build well |
-| **Transaction Deadline Tracking** | Monitors 20-30 contingency dates per escrow | Requires deeper GHL integration |
-| **Scheduling Coordination** | Book inspectors, appraisers, photographers | Third-party integrations |
-| **Advanced Document Templates** | Offers, amendments, disclosures | Legal review required |
-| **Proactive Follow-up Sequences** | Automated drip campaigns | Needs behavior data first |
-| **LionDesk Import Tool** | CSV migration path for refugees | Time-sensitive opportunity |
+- [ ] Voice lead qualification (24/7 inbound AI agent)
+- [ ] Transaction deadline tracking
+- [ ] Scheduling coordination (inspectors, appraisers, photographers)
+- [ ] Advanced document templates (offers, amendments, disclosures)
+- [ ] Proactive follow-up sequences
+- [ ] LionDesk CSV import tool
+- [ ] Payment/subscription management (Stripe)
 
-### 5.4 Deferred to V2
+| Feature | Description | Why Growth Tier |
+|---------|-------------|-----------------|
+| **Voice Lead Qualification** | 24/7 AI agent handles inbound calls, qualifies leads, books appointments | Key upgrade trigger—complex to build well |
+| **Transaction Deadline Tracking** | Monitors 20-30 contingency dates per escrow with proactive alerts | TC-level functionality |
+| **Scheduling Coordination** | Book inspectors, appraisers, photographers, contractors | Requires third-party integrations |
+| **Advanced Document Templates** | Offers, amendments, disclosures, repair requests | Legal review required |
+| **Proactive Follow-up Sequences** | Automated drip campaigns triggered by deal stage or time | Needs behavior data first |
+| **LionDesk Import Tool** | CSV migration path for LionDesk refugees | Time-sensitive market opportunity |
+
+### 5.4 V2 Scope (Months 4-6) — Enterprise Features `[FINALIZED]`
+
+- [ ] Multi-user support
+- [ ] Team pipeline visibility
+- [ ] Admin dashboard
+- [ ] Lead routing/assignment
+- [ ] iMessage/Sendblue evaluation
+- [ ] Native iOS app
 
 | Feature | Rationale |
 |---------|-----------|
+| **Multi-user support** | Enterprise tier requirement—different buyer persona |
+| **Team pipeline visibility** | Enterprise tier requirement |
+| **Admin dashboard** | Enterprise tier requirement |
+| **Lead routing/assignment** | Enterprise tier requirement |
 | **iMessage/Sendblue** | Technical reliability concerns; validate need first |
-| **Native iOS App** | PWA sufficient for MVP; native requires 8-12 weeks |
-| **Enterprise/Team Features** | Multi-user, admin dashboard, lead routing—different buyer |
+| **Native iOS App** | PWA sufficient for MVP/V1; native requires 8-12 weeks |
 | **Broker Dashboard** | B2B motion comes after B2C validation |
 
 ### 5.5 User Interface
@@ -478,61 +511,121 @@ Sell directly to individual agents initially, then expand to brokerage deals onc
 - Lower sales complexity
 - Word-of-mouth potential
 
-### 7.2 Pricing `[UPDATED v2.1]`
+### 7.2 Pricing Strategy `[FINALIZED v2.1]`
 
-**Tiered Pricing Model**
+#### Tier Overview
+
+| Tier | Price | Target Segment | Key Value Proposition |
+|------|-------|----------------|----------------------|
+| **Core** | $149/month | Solo agents replacing basic CRM / LionDesk refugees | "Your CRM, invisible" |
+| **Growth** | $249/month | Scaling agents (12+ deals/year) who need TC-level support | "The TC you couldn't afford" |
+| **Enterprise** | Custom (Call) | Teams of 2+ agents | "Your team, synchronized" |
+
+---
 
 #### Core Tier - $149/month
-**Target:** Agents replacing basic CRM / LionDesk refugees
 
-| Feature | Included |
-|---------|----------|
-| Chat interface (Claude-style home page) | Yes |
-| Voice input | Yes |
-| Document generation (BRA, listings, emails) | Yes |
-| Contact management via conversation | Yes |
-| Pipeline/deal tracking | Yes |
-| SMS messaging via GHL | Yes |
-| Mobile PWA | Yes |
-| Daily briefings ("Who needs attention today?") | Yes |
-| Compliance timestamping (GPS + audit trail) | Yes |
+**Target:** Individual agents doing 7-15 deals/year who are replacing a basic CRM (LionDesk, spreadsheets, or nothing) and want the "invisible CRM" experience.
+
+**Included Features:**
+
+| Category | Feature | Description |
+|----------|---------|-------------|
+| **Interface** | Chat interface (Claude-style) | Simple, clean conversation-first home page |
+| | Voice input | Web Speech API for hands-free operation |
+| | Mobile PWA | Full functionality on mobile browser |
+| **Documents** | Document generation | BRA, touring agreements, listing descriptions, client emails (<60 seconds) |
+| **CRM** | Contact management | Add, find, update contacts via conversation |
+| | Pipeline/deal tracking | Move deals through stages via conversation |
+| | Daily briefings | "Who needs attention today?" proactive summary |
+| **Communication** | SMS messaging | Send messages via GHL infrastructure |
+| **Compliance** | Compliance timestamping | GPS + time + signature events for audit trail |
+
+**Positioning:** "Everything you need to run your business by talking to it."
+
+---
 
 #### Growth Tier - $249/month
-**Target:** Agents who need TC-level support (12+ deals/year)
 
-| Feature | Included |
-|---------|----------|
-| Everything in Core | Yes |
-| Voice lead qualification (24/7 inbound AI agent) | Yes |
-| Transaction deadline tracking | Yes |
-| Scheduling coordination (inspectors, appraisers, photographers) | Yes |
-| Advanced document templates (offers, amendments, disclosures) | Yes |
-| Proactive follow-up sequences | Yes |
-| Priority support | Yes |
+**Target:** Scaling agents doing 12-20+ deals/year who are at the "productivity cliff" and would otherwise need to hire a Transaction Coordinator ($350-500/file) or Virtual Assistant ($700-2,500/month).
 
-#### Enterprise Tier - Custom Pricing (Call)
-**Target:** Teams of 2+ agents
+**Included Features:**
 
-| Feature | Included |
-|---------|----------|
-| Everything in Growth | Yes |
-| Multiple users | Yes |
-| Team pipeline visibility | Yes |
-| Admin dashboard | Yes |
-| Lead routing/assignment | Yes |
-| Dedicated success manager | Yes |
+*Everything in Core, plus:*
 
-> **Note:** Enterprise features deferred to V2. Initial sales can use Growth tier with manual provisioning.
+| Category | Feature | Description |
+|----------|---------|-------------|
+| **AI Agent** | Voice lead qualification | 24/7 inbound AI agent answers calls, qualifies leads, books appointments |
+| **Transaction Management** | Transaction deadline tracking | Monitors 20-30 contingency dates per escrow, proactive alerts |
+| | Scheduling coordination | Book inspectors, appraisers, photographers, contractors via conversation |
+| **Documents** | Advanced templates | Offers, amendments, disclosures, repair requests |
+| **Automation** | Proactive follow-up sequences | Automated drip campaigns triggered by deal stage or time |
+| **Support** | Priority support | Faster response times, dedicated support channel |
 
-#### Unit Economics (Using GHL Agency Pro)
+**Positioning:** "The Transaction Coordinator you couldn't afford—available 24/7 for $249/month."
 
-| Agents | Monthly Revenue | Fixed Costs | Variable Costs | Margin |
-|--------|-----------------|-------------|----------------|--------|
-| 15 (breakeven) | $2,235 | $497 (GHL) | $150 (Claude) | 71% |
-| 50 | $9,950 | $497 | $500 | 90% |
-| 100 | $19,900 | $497 | $1,000 | 92% |
+**Upgrade Trigger:** When an agent hits 12+ deals/year, the transaction complexity and lead volume makes Growth obviously worth it. The $100/month difference ($1,200/year) is nothing compared to TC costs ($350-500 × 12 deals = $4,200-6,000/year).
 
-> **Key Insight:** GHL Agency Pro costs $497/mo FIXED regardless of user count. This creates exceptional operating leverage at scale.
+---
+
+#### Enterprise Tier - Custom Pricing
+
+**Target:** Teams of 2+ agents, small brokerages, or partnerships that need shared visibility and coordination.
+
+**Included Features:**
+
+*Everything in Growth, plus:*
+
+| Category | Feature | Description |
+|----------|---------|-------------|
+| **Team** | Multiple users | Add team members to shared workspace |
+| | Team pipeline visibility | See all deals across the team |
+| | Lead routing/assignment | Automatically or manually assign leads to team members |
+| **Admin** | Admin dashboard | Team performance, activity monitoring, settings management |
+| **Support** | Dedicated success manager | Named contact for onboarding, training, ongoing support |
+
+**Positioning:** "Your entire team, running on conversation."
+
+**Sales Motion:** "Call for pricing" - Enterprise requires a conversation to understand team size, needs, and customize the package. Minimum expected: $500+/month depending on team size.
+
+> **Note:** Enterprise features are deferred to V2. Initial enterprise inquiries can be handled with Growth tier + manual provisioning of additional users.
+
+---
+
+#### Pricing Rationale
+
+**Why $149 for Core:**
+- Below psychological $200 threshold
+- Competitive with Cloze Pro ($167/mo) but includes more AI capability
+- Above LionDesk ($25-83/mo) but dramatically better experience
+- Represents <1 hour of commission on a single deal
+
+**Why $249 for Growth:**
+- Clear value anchor: Human TC costs $350-500/file × 12+ deals = $4,200-6,000/year
+- Growth at $249/month × 12 = $2,988/year = **50-70% savings vs. human TC**
+- $100/month upgrade from Core is easy to justify when hitting 12+ deals
+
+**Why Custom for Enterprise:**
+- Team pricing is complex (varies by size, needs, support level)
+- Allows value-based pricing conversations
+- Signals "premium" positioning for team buyers
+- Avoids publishing a price that undercuts perceived value
+
+---
+
+#### Unit Economics by Tier
+
+Using GHL Agency Pro ($497/mo fixed cost) + Claude API (~$10/agent/month variable):
+
+| Scenario | Core Agents | Growth Agents | Monthly Revenue | Costs | Gross Margin |
+|----------|-------------|---------------|-----------------|-------|--------------|
+| Early (15 agents) | 12 | 3 | $2,535 | $647 | 74% |
+| Growing (50 agents) | 35 | 15 | $8,890 | $997 | 89% |
+| Scale (100 agents) | 65 | 35 | $18,380 | $1,497 | 92% |
+
+**Breakeven:** ~15 agents (any mix of Core/Growth)
+
+> **Key Insight:** The $497/month GHL fixed cost creates exceptional operating leverage. Adding agents has minimal incremental cost (primarily Claude API at ~$10/agent/month), so margins improve dramatically at scale.
 
 ### 7.3 Messaging Framework
 
@@ -573,7 +666,7 @@ Sell directly to individual agents initially, then expand to brokerage deals onc
 
 | Metric | Target |
 |--------|--------|
-| Paying subscribers | 50 agents (~$10K MRR at blended $199 avg) |
+| Paying subscribers | 50 agents (~$10K MRR at blended ~$200 avg) |
 | NPS | 50+ |
 | Monthly churn | <5% |
 | Weekly engagement | 5+ sessions/user |
@@ -748,7 +841,7 @@ Prioritized research and decision queue:
 | 72.5% of agents have CRM | NAR/Industry data | Market is aware of CRM need |
 | 76% frustrated with CRM complexity | CRM Statistics 2025 | Simplification opportunity is real |
 | 78% of buyers go with first responder | Lead conversion research | Speed-to-lead pain is acute |
-| $100-300/mo willingness to pay | Industry analysis | $299 price point is achievable |
+| $100-300/mo willingness to pay | Industry analysis | $149-249 tiered pricing is within range |
 | 44% give up after one follow-up | Agent behavior research | Automation opportunity is real |
 | Commissions UP post-NAR settlement | Federal Reserve analysis | Settlement urgency narrative is weak |
 
@@ -759,6 +852,7 @@ Prioritized research and decision queue:
 | 1.0 | Jan 14, 2026 | Initial PRD created |
 | 2.0 | Jan 14, 2026 | Major updates: pricing correction, iMessage deferred, competitive analysis integrated, validation plan added, technical feasibility incorporated |
 | 2.1 | Jan 16, 2026 | **Strategic pivot:** "Claude Code for real estate" vision, Architecture Philosophy section, Scaling Solo Agent persona (8-20 deals), tiered pricing ($149/$249/Enterprise), "AI Operating Partner" positioning, "Why We're Not a GHL Wrapper" section, MVP scope refinement, iMessage deferred to V2 |
+| 2.1.1 | Jan 16, 2026 | **Pricing finalized:** Detailed tier structure with Core ($149), Growth ($249), Enterprise (Custom). Compliance timestamping confirmed in Core tier. Voice Lead Qualification as key Growth upgrade trigger. Unit economics by tier. MVP/V1/V2 scope aligned to tiers. |
 
 ---
 
