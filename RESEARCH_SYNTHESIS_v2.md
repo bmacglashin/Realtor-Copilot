@@ -1,4 +1,4 @@
-# Deep Research Synthesis v2: Realty Copilot
+# Deep Research Synthesis v2: AgentAlly
 **January 2026 | Strategic Analysis & PRD Recommendations**
 
 *Living Document - Last Updated: January 15, 2026*
@@ -24,7 +24,7 @@ Before diving into recommendations, we must correct a fundamental misunderstandi
 
 **We ARE building:** "Claude Code for running a real estate business"
 
-Just as Claude Code lets developers talk to their codebase without navigating IDE menus, Realty Copilot lets agents talk to their business without navigating CRM dashboards.
+Just as Claude Code lets developers talk to their codebase without navigating IDE menus, AgentAlly lets agents talk to their business without navigating CRM dashboards.
 
 **Architecture Stack:**
 ```
@@ -226,8 +226,8 @@ Combining all three dimensions (weighted: Customer Impact 40%, Differentiation 3
 
 ## Refined One-Pager for Agent Interviews
 
-# Realty Copilot
-### What if you could run your real estate business by just talking?
+# AgentAlly
+### The AI ally for real estate agents. Just talk.
 
 ---
 
@@ -243,25 +243,25 @@ And now with the new buyer agreement rules? You're supposed to generate legal do
 
 Imagine finishing a showing, getting in your car, and just... talking:
 
-> *"Hey Copilot, that showing went well. The Johnsons loved the kitchen but thought the yard was too small. Budget is $450k, they want to be in Buckhead schools. Set a reminder to send them the disclosure packet tomorrow."*
+> *"Hey AgentAlly, that showing went well. The Johnsons loved the kitchen but thought the yard was too small. Budget is $450k, they want to be in Buckhead schools. Set a reminder to send them the disclosure packet tomorrow."*
 
 And it's done. No typing. No logging in. No clicking through menus. Your CRM updates itself. The reminder is set. You're already driving to your next appointment.
 
 Or you're meeting a new buyer at a property. Before you can show them the house, you need that signed agreement. Instead of fumbling with ZipForms for 20 minutes:
 
-> *"Copilot, draft a touring agreement for Sarah Chen at this address."*
+> *"AgentAlly, draft a touring agreement for Sarah Chen at this address."*
 
 Sixty seconds later, you text her a link. She signs on her phone. You're inside the house before she's finished reading the welcome mat.
 
-**That's Realty Copilot.**
+**That's AgentAlly.**
 
 It's not another CRM you have to learn. There's no dashboard to navigate, no fields to fill out, no apps to switch between.
 
-You just talk. Copilot handles the rest.
+You just talk. AgentAlly handles the rest.
 
 **How It Works**
 
-Realty Copilot is built on the same AI technology that powers tools like Claude and ChatGPT—but designed specifically for how real estate agents actually work.
+AgentAlly is built on the same AI technology that powers tools like Claude and ChatGPT—but designed specifically for how real estate agents actually work.
 
 - **Voice-first**: Designed for your car, not your desk
 - **Zero data entry**: AI captures details from your conversations
@@ -271,8 +271,8 @@ Realty Copilot is built on the same AI technology that powers tools like Claude 
 
 **What It Replaces**
 
-| Today | With Copilot |
-|-------|--------------|
+| Today | With AgentAlly |
+|-------|----------------|
 | CRM you never update | Updates itself from your voice |
 | 20-minute document prep | 60-second voice command |
 | Forgetting to follow up | Proactive reminders |
@@ -280,7 +280,7 @@ Realty Copilot is built on the same AI technology that powers tools like Claude 
 
 **Who It's For**
 
-Realty Copilot is built for independent agents doing 8-20 deals a year—agents who:
+AgentAlly is built for independent agents doing 8-20 deals a year—agents who:
 - Can't afford a full-time assistant but desperately need the help
 - Are tired of fighting with complicated software
 - Want to grow their business without working more hours
@@ -299,7 +299,7 @@ We're building this tool with agents, not just for them. We're looking for 10 ag
 
 **Interested?**
 
-[Contact info / Next step]
+Visit **getagentally.com** or [Contact info / Next step]
 
 ---
 
@@ -311,7 +311,7 @@ Based on the research synthesis and architecture clarification, here are the spe
 
 **Current:** "AI-powered CRM and virtual assistant"
 
-**Recommended:** "The AI Operating Partner that lets agents run their entire business through conversation—no dashboards, no data entry, just talk."
+**Recommended:** "The AI ally that lets agents run their entire business through conversation—no dashboards, no data entry, just talk."
 
 **Supporting tagline:** "Claude Code for real estate."
 
@@ -321,7 +321,7 @@ Add explicit clarification:
 
 > **Architecture Philosophy: AI-First, Not AI-Added**
 >
-> Realty Copilot is fundamentally different from competitors who add AI features to existing CRM interfaces. Our architecture treats Claude as the *entire* user interface:
+> AgentAlly is fundamentally different from competitors who add AI features to existing CRM interfaces. Our architecture treats Claude as the *entire* user interface:
 >
 > - **Agent talks** → Claude understands intent and context
 > - **Claude orchestrates** → MCP tools execute actions against infrastructure
@@ -400,10 +400,10 @@ Add new section:
 > 2. **Complexity inheritance**: GHL's interface is designed for marketers, not agents
 > 3. **Churn**: Non-technical agents abandon complex interfaces
 >
-> Realty Copilot is architecturally different:
+> AgentAlly is architecturally different:
 >
-> | GHL Wrappers | Realty Copilot |
-> |--------------|----------------|
+> | GHL Wrappers | AgentAlly |
+> |--------------|-----------|
 > | Configure GHL's existing UI | Replace UI entirely with Claude |
 > | Add AI as feature | AI IS the interface |
 > | Compete on configurations | Compete on conversation quality |

@@ -1,4 +1,4 @@
-# Competitive Analysis: Realty Copilot
+# Competitive Analysis: AgentAlly
 *Last Updated: January 2026 (v2)*
 
 ## Executive Summary
@@ -147,7 +147,7 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 
 ## Feature Comparison Matrix (Updated)
 
-| Feature | Realty Copilot | Cloze + Maia | FUB + Lucy | GHL AI Employee |
+| Feature | AgentAlly | Cloze + Maia | FUB + Lucy | GHL AI Employee |
 |---------|---------------|--------------|------------|-----------------|
 | **Primary Interface** | Chat | Dashboard | Dashboard | Dashboard |
 | **Conversation-First** | ✅ Core | 🟡 Maia add-on | 🟡 Lucy add-on | 🟡 Feature |
@@ -177,7 +177,7 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
          ↑ Platform AI        |    ↑ Team integration
                               |
                               |
-    ★ [REALTY COPILOT $199] ★ |
+    ★ [AGENTALLY $199] ★      |
          ↑ Invisible CRM      |
                               |
     [Cloze $17-192]           |
@@ -255,7 +255,7 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 
 ## Competitive Response Predictions
 
-### If Realty Copilot Gains Traction:
+### If AgentAlly Gains Traction:
 
 | Competitor | Likely Response | Timeline | Our Counter |
 |------------|-----------------|----------|-------------|
@@ -267,7 +267,7 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 
 ### The GHL Question
 
-**Scenario:** GHL decides to build a "Realty Copilot killer" in their AI Employee suite.
+**Scenario:** GHL decides to build an "AgentAlly killer" in their AI Employee suite.
 
 **Their Advantages:**
 - Lower cost (no API markup)
@@ -292,13 +292,13 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 ## Competitive Positioning Statement
 
 **Against Cloze:**
-"Cloze added AI to their CRM. Realty Copilot IS the AI—there's no CRM to learn."
+"Cloze added AI to their CRM. AgentAlly IS the AI—there's no CRM to learn."
 
 **Against Follow Up Boss:**
-"FUB is built for teams with administrators. Realty Copilot is built for you, the solo agent who doesn't have time for software."
+"FUB is built for teams with administrators. AgentAlly is built for you, the solo agent who doesn't have time for software."
 
 **Against GHL AI Employee:**
-"GHL gives you AI components to configure. Realty Copilot gives you an assistant who's ready to work on day one."
+"GHL gives you AI components to configure. AgentAlly gives you an assistant who's ready to work on day one."
 
 **Against "Do Nothing" (Spreadsheets/Memory):**
 "You're losing 5 hours a week to admin and leads to faster agents. Your first competitor is your own disorganization."

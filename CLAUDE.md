@@ -1,5 +1,20 @@
-# CLAUDE.md - Realty Copilot Development Context
-*Last Updated: January 2026 by Claude Code*
+# CLAUDE.md - AgentAlly Project Context
+*Last Updated: January 2026 (v2)*
+
+## Quick Start for New Sessions
+
+**What is this project?**
+AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core innovation: agents talk to their CRM instead of clicking through dashboards.
+
+**Current Status:** Pre-validation. Documents complete. Ready for Phase 1 research (Reddit/forums) followed by 10-15 agent interviews.
+
+**Key Strategic Decisions Made:**
+1. Target: Solo agents doing 7-20 deals/year
+2. Positioning: "The Invisible CRM"
+3. Infrastructure: GoHighLevel Agency Pro ($497/mo fixed cost)
+4. Pricing: $199/mo Solo, $349/mo Team, $599/mo Brokerage
+5. MVP Scope: Chat + GHL Contacts + Document Generation + Google Drive
+6. Defensibility: Conversation-first architecture + Data flywheel
 
 ---
 
@@ -19,14 +34,14 @@
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React + Tailwind CSS |
-| Backend | Node.js + Express |
-| AI Layer | Claude Agent SDK + MCP Tools |
-| Infrastructure | GoHighLevel (invisible) |
-| Voice Input | Web Speech API (browser-native) |
-| Storage | Google Drive |
+| Document | Purpose | Version |
+|----------|---------|---------|
+| `AgentAlly_PRD_v2.md` | **Current PRD** - positioning, features, roadmap | v2.1.2 |
+| `UNIT_ECONOMICS.md` | Financial model, breakeven analysis | v1.0 |
+| `COMPETITIVE_ANALYSIS.md` | Competitor deep dives, positioning | v2.0 |
+| `TECHNICAL_FEASIBILITY.md` | Tech stack, risks, build plan | v2.0 |
+| `VALIDATION_PLAN.md` | Research & interview plan | v2.0 |
+| `RESEARCH_SYNTHESIS_v2.md` | Deep research synthesis and one-pager | v2.0 |
 
 ---
 
@@ -245,30 +260,32 @@ PORT=
 
 ---
 
-## Standard Constraints
+# Current PRD
+cat AgentAlly_PRD_v2.md
 
 **Copy this block into prompts:**
 
-```
-Follow directory structure in CLAUDE.md
-Use naming conventions in CLAUDE.md
-Never hardcode secrets—use environment variables
-GHL API requires version header: 2021-07-28
-GHL rate limit: 100 requests per 10 seconds
-Check Mistakes Log in CLAUDE.md before implementing
-Check Anti-Patterns section before making design decisions
+# Supporting analysis
+cat COMPETITIVE_ANALYSIS.md
+cat TECHNICAL_FEASIBILITY.md
+cat VALIDATION_PLAN.md
+cat RESEARCH_SYNTHESIS_v2.md
 ```
 
 ---
 
 ## Slash Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/plan` | Enter planning mode with structured template |
-| `/verify` | Run verification on current implementation |
-| `/mistake` | Log a mistake to CLAUDE.md |
-| `/status` | Show current build progress |
+```
+Realtor-Copilot/
+├── CLAUDE.md                      # This file - project context
+├── AgentAlly_PRD_v2.md           # Current PRD
+├── UNIT_ECONOMICS.md              # Financial model
+├── COMPETITIVE_ANALYSIS.md        # Competitor analysis
+├── TECHNICAL_FEASIBILITY.md       # Tech assessment
+├── VALIDATION_PLAN.md             # Research & interview plan
+└── RESEARCH_SYNTHESIS_v2.md       # Deep research synthesis
+```
 
 ---
 

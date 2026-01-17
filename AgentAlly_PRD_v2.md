@@ -1,11 +1,11 @@
 # PRODUCT REQUIREMENTS DOCUMENT
-# Realty Copilot
-## The AI Operating Partner for Independent Agents
+# AgentAlly
+## The AI ally for real estate agents
 
 **Version 2.1 | January 2026**
 **CONFIDENTIAL**
 
-> **Tagline:** "Run your business by talking to it."
+> **Tagline:** "The AI ally for real estate agents. Just talk."
 
 > **[CHANGE LOG FROM V1]**
 > This document contains significant updates from the original PRD based on comprehensive market research and technical feasibility analysis. All changes are marked with:
@@ -18,9 +18,9 @@
 
 ## 1. Executive Summary
 
-**Product:** Realty Copilot is **"Claude Code for real estate"**—an AI operating partner that lets agents run their entire business through conversation. The AI IS the entire interface. There are no dashboards to navigate, no menus to learn, no data entry required. Agents simply talk to their business.
+**Product:** AgentAlly is **"Claude Code for real estate"**—an AI ally that lets agents run their entire business through conversation. The AI IS the entire interface. There are no dashboards to navigate, no menus to learn, no data entry required. Agents simply talk to their business.
 
-**Core Vision:** Just as Claude Code lets developers talk to their codebase without navigating IDE menus, Realty Copilot lets agents talk to their business without navigating CRM dashboards. GoHighLevel serves as invisible infrastructure—agents never see or interact with GHL's interface.
+**Core Vision:** Just as Claude Code lets developers talk to their codebase without navigating IDE menus, AgentAlly lets agents talk to their business without navigating CRM dashboards. GoHighLevel serves as invisible infrastructure—agents never see or interact with GHL's interface.
 
 **Core Value Proposition:** Your AI teammate that handles lead follow-up, document generation, transaction management, and client communication—all accessible via natural conversation or voice commands through a simple chat interface (like claude.ai).
 
@@ -61,7 +61,7 @@
 
 ## 1.1 Architecture Philosophy: AI-First, Not AI-Added `[NEW v2.1]`
 
-Realty Copilot is fundamentally different from competitors who add AI features to existing CRM interfaces. Our architecture treats Claude as the *entire* user interface.
+AgentAlly is fundamentally different from competitors who add AI features to existing CRM interfaces. Our architecture treats Claude as the *entire* user interface.
 
 ### The "Claude Code" Analogy
 
@@ -70,7 +70,7 @@ Realty Copilot is fundamentally different from competitors who add AI features t
 - "Refactor this function to use async/await"
 - "What does this error mean and how do I fix it?"
 
-**Realty Copilot** lets agents talk to their business:
+**AgentAlly** lets agents talk to their business:
 - "Add Sarah Johnson as a new buyer, budget $500K, wants Buckhead schools"
 - "Draft the touring agreement for 2622 Ellwood Drive"
 - "Who should I follow up with today?"
@@ -119,7 +119,7 @@ In both cases, the AI IS the interface. The underlying systems (filesystem, IDE,
 
 ### Why This Architecture is Defensible
 
-| Traditional GHL Wrappers | Realty Copilot |
+| Traditional GHL Wrappers | AgentAlly |
 |--------------------------|----------------|
 | Configure GHL's existing UI | Replace UI entirely with Claude |
 | Add AI as a feature bolt-on | AI IS the interface |
@@ -223,9 +223,9 @@ Current real estate CRMs (Follow Up Boss, kvCORE, LionDesk, etc.) are built on a
 
 ### 4.1 Vision Statement `[UPDATED v2.1]`
 
-Realty Copilot is **The AI Operating Partner for Independent Agents**—your AI teammate that lets you run your entire business through conversation.
+AgentAlly is **the AI ally for real estate agents**—your AI teammate that lets you run your entire business through conversation.
 
-> **Tagline:** "Run your business by talking to it."
+> **Tagline:** "The AI ally for real estate agents. Just talk."
 
 > **[UPDATED v2.1] Vision Reality Check:**
 > - Virtual assistants cost $450-550/month for basic offshore support
@@ -249,15 +249,15 @@ Realty Copilot is **The AI Operating Partner for Independent Agents**—your AI 
 
 ### 4.3 Positioning Statement `[UPDATED v2.1]`
 
-FOR scaling solo agents (8-20 deals/year) WHO are at their productivity cliff and can't afford human assistants, REALTY COPILOT IS **the AI Operating Partner** THAT handles lead follow-up, document generation, and transaction management through natural conversation. UNLIKE traditional CRMs that require learning complex interfaces, or "AI CRMs" that bolt AI onto dashboards, OUR PRODUCT eliminates the interface entirely—you just talk to your business.
+FOR scaling solo agents (8-20 deals/year) WHO are at their productivity cliff and can't afford human assistants, AGENTALLY IS **the AI ally** THAT handles lead follow-up, document generation, and transaction management through natural conversation. UNLIKE traditional CRMs that require learning complex interfaces, or "AI CRMs" that bolt AI onto dashboards, OUR PRODUCT eliminates the interface entirely—you just talk to your business.
 
 ### 4.4 Positioning Language Guide `[NEW v2.1]`
 
 | Use This | Not This |
 |----------|----------|
-| "AI Operating Partner" | "AI-powered CRM" |
+| "AI ally" | "AI-powered CRM" |
 | "AI Teammate" | "TC Replacement" |
-| "Run your business by talking" | "Conversational interface" |
+| "Just talk" | "Conversational interface" |
 | "Invisible infrastructure" | "GHL wrapper" |
 | "Designed for the car" | "Mobile-friendly" |
 
@@ -341,7 +341,7 @@ This protects agents from "he said/she said" disputes and creates defensible aud
 
 **Daily Briefings (Proactive Intelligence)**
 
-Each morning, Copilot proactively tells agents:
+Each morning, AgentAlly proactively tells agents:
 - "You have 3 follow-ups due today"
 - "The Thompson inspection is tomorrow—confirm with inspector?"
 - "Sarah Chen hasn't responded in 5 days—draft a check-in?"
@@ -420,7 +420,7 @@ The landing page IS a chat interface. No navigation menus. No dashboard tabs. Ju
 
 ### 6.1 Architecture Overview
 
-`[UPDATED]` Realty Copilot uses a layered architecture where Claude Agent SDK orchestrates between the user interface and GoHighLevel infrastructure.
+`[UPDATED]` AgentAlly uses a layered architecture where Claude Agent SDK orchestrates between the user interface and GoHighLevel infrastructure.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -737,8 +737,8 @@ The market is flooded with GoHighLevel "wrappers"—agencies that configure GHL'
 
 ### How We're Different
 
-| GHL Wrappers | Realty Copilot |
-|--------------|----------------|
+| GHL Wrappers | AgentAlly |
+|--------------|-----------|
 | Configure GHL's existing UI | **Replace UI entirely with Claude** |
 | Add AI as a feature | **AI IS the interface** |
 | Compete on configurations | **Compete on conversation quality** |
@@ -853,6 +853,7 @@ Prioritized research and decision queue:
 | 2.0 | Jan 14, 2026 | Major updates: pricing correction, iMessage deferred, competitive analysis integrated, validation plan added, technical feasibility incorporated |
 | 2.1 | Jan 16, 2026 | **Strategic pivot:** "Claude Code for real estate" vision, Architecture Philosophy section, Scaling Solo Agent persona (8-20 deals), tiered pricing ($149/$249/Enterprise), "AI Operating Partner" positioning, "Why We're Not a GHL Wrapper" section, MVP scope refinement, iMessage deferred to V2 |
 | 2.1.1 | Jan 16, 2026 | **Pricing finalized:** Detailed tier structure with Core ($149), Growth ($249), Enterprise (Custom). Compliance timestamping confirmed in Core tier. Voice Lead Qualification as key Growth upgrade trigger. Unit economics by tier. MVP/V1/V2 scope aligned to tiers. |
+| 2.1.2 | Jan 17, 2026 | **Rebranded from Realty Copilot to AgentAlly.** New tagline: "The AI ally for real estate agents. Just talk." New positioning: "The AI ally for real estate agents." |
 
 ---
 

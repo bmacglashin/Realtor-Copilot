@@ -1,9 +1,9 @@
-# Unit Economics Analysis: Realty Copilot
+# Unit Economics Analysis: AgentAlly
 *Last Updated: January 2026*
 
 ## Executive Summary
 
-This document models the financial viability of Realty Copilot at various scale points. The analysis reveals a **highly favorable unit economics structure** due to GoHighLevel's fixed-cost infrastructure model.
+This document models the financial viability of AgentAlly at various scale points. The analysis reveals a **highly favorable unit economics structure** due to GoHighLevel's fixed-cost infrastructure model.
 
 **Key Finding:** Breakeven occurs at **~15 paying agents** at the Solo tier ($199/mo). Gross margins exceed 70% at 100+ agents.
 
@@ -227,7 +227,7 @@ If iMessage is added post-MVP:
 
 ### The Strategic Asset: Aggregated Intelligence
 
-As Realty Copilot scales, the data flywheel creates compounding value:
+As AgentAlly scales, the data flywheel creates compounding value:
 
 **Phase 1 (0-100 agents): Learning**
 - Understand usage patterns
