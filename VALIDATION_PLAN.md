@@ -1,4 +1,4 @@
-# Validation Plan: Realty Copilot
+# Validation Plan: AgentAlly
 *Last Updated: January 2026 (v2)*
 
 ## Executive Summary
@@ -226,12 +226,13 @@ After each interview, score:
 **Objective:** Convert stated interest into financial commitment
 
 **Page Elements:**
-1. Headline: "Stop Fighting Your CRM. Just Talk."
-2. Subhead: "Realty Copilot is the AI assistant that makes your CRM invisible."
+1. Headline: "The AI ally for real estate agents. Just talk."
+2. Subhead: "AgentAlly makes your CRM invisible."
 3. Problem statement (speed-to-lead focus)
 4. Solution preview (30-second video demo)
 5. Pricing: "$199/month for early access"
 6. CTA: "Reserve Your Founding Member Spot ($50, refundable)"
+7. URL: **getagentally.com**
 
 **Traffic Sources:**
 - Direct links to interview participants who didn't commit live

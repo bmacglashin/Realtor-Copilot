@@ -1,10 +1,10 @@
-# CLAUDE.md - Realty Copilot Project Context
+# CLAUDE.md - AgentAlly Project Context
 *Last Updated: January 2026 (v2)*
 
 ## Quick Start for New Sessions
 
 **What is this project?**
-Realty Copilot is an AI-powered "invisible CRM" for solo real estate agents. The core innovation: agents talk to their CRM instead of clicking through dashboards.
+AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core innovation: agents talk to their CRM instead of clicking through dashboards.
 
 **Current Status:** Pre-validation. Documents complete. Ready for Phase 1 research (Reddit/forums) followed by 10-15 agent interviews.
 
@@ -34,13 +34,12 @@ Realty Copilot is an AI-powered "invisible CRM" for solo real estate agents. The
 
 | Document | Purpose | Version |
 |----------|---------|---------|
-| `Realty_Copilot_PRD_v3.md` | **Current PRD** - positioning, features, roadmap | v3.0 |
+| `AgentAlly_PRD_v2.md` | **Current PRD** - positioning, features, roadmap | v2.1.2 |
 | `UNIT_ECONOMICS.md` | Financial model, breakeven analysis | v1.0 |
 | `COMPETITIVE_ANALYSIS.md` | Competitor deep dives, positioning | v2.0 |
 | `TECHNICAL_FEASIBILITY.md` | Tech stack, risks, build plan | v2.0 |
 | `VALIDATION_PLAN.md` | Research & interview plan | v2.0 |
-| `Realty_Copilot_PRD_v2.md` | Previous PRD (superseded) | v2.0 |
-| `Realty_Copilot_PRD_v1.docx` | Original PRD (historical reference) | v1.0 |
+| `RESEARCH_SYNTHESIS_v2.md` | Deep research synthesis and one-pager | v2.0 |
 
 ---
 
@@ -253,7 +252,7 @@ When resuming work:
 cat CLAUDE.md
 
 # Current PRD
-cat Realty_Copilot_PRD_v3.md
+cat AgentAlly_PRD_v2.md
 
 # Financial model
 cat UNIT_ECONOMICS.md
@@ -262,6 +261,7 @@ cat UNIT_ECONOMICS.md
 cat COMPETITIVE_ANALYSIS.md
 cat TECHNICAL_FEASIBILITY.md
 cat VALIDATION_PLAN.md
+cat RESEARCH_SYNTHESIS_v2.md
 ```
 
 ---
@@ -271,13 +271,12 @@ cat VALIDATION_PLAN.md
 ```
 Realtor-Copilot/
 ├── CLAUDE.md                      # This file - project context
-├── Realty_Copilot_PRD_v3.md      # Current PRD
-├── Realty_Copilot_PRD_v2.md      # Previous PRD (reference)
-├── Realty_Copilot_PRD_v1.docx    # Original PRD (historical)
+├── AgentAlly_PRD_v2.md           # Current PRD
 ├── UNIT_ECONOMICS.md              # Financial model
 ├── COMPETITIVE_ANALYSIS.md        # Competitor analysis
 ├── TECHNICAL_FEASIBILITY.md       # Tech assessment
-└── VALIDATION_PLAN.md             # Research & interview plan
+├── VALIDATION_PLAN.md             # Research & interview plan
+└── RESEARCH_SYNTHESIS_v2.md       # Deep research synthesis
 ```
 
 ---

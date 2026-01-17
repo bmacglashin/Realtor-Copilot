@@ -1,4 +1,4 @@
-# Technical Feasibility Assessment: Realty Copilot
+# Technical Feasibility Assessment: AgentAlly
 *Last Updated: January 2026 (v2)*
 
 ## Executive Summary
