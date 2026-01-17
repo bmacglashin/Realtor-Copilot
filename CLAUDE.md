@@ -1,135 +1,274 @@
-# CLAUDE.md - Realty Copilot Project Context
-*Last Updated: January 2026 (v2)*
-
-## Quick Start for New Sessions
-
-**What is this project?**
-Realty Copilot is an AI-powered "invisible CRM" for solo real estate agents. The core innovation: agents talk to their CRM instead of clicking through dashboards.
-
-**Current Status:** Pre-validation. Documents complete. Ready for Phase 1 research (Reddit/forums) followed by 10-15 agent interviews.
-
-**Key Strategic Decisions Made:**
-1. Target: Solo agents doing 7-20 deals/year
-2. Positioning: "The Invisible CRM"
-3. Infrastructure: GoHighLevel Agency Pro ($497/mo fixed cost)
-4. Pricing: $199/mo Solo, $349/mo Team, $599/mo Brokerage
-5. MVP Scope: Chat + GHL Contacts + Document Generation + Google Drive
-6. Defensibility: Conversation-first architecture + Data flywheel
+# CLAUDE.md - Realty Copilot Development Context
+*Last Updated: January 2026 by Claude Code*
 
 ---
 
 ## Project Overview
 
-**Product:** AI-powered CRM wrapper that makes CRM invisible through conversational interface.
+**Project Name:** Realty Copilot
+
+**Description:** "Claude Code for real estate" — AI that lets agents run their business by talking. GHL is invisible infrastructure; Claude IS the interface.
 
 **Core Thesis:** The best CRM is one you forget you're using. Agents don't want software—they want an assistant.
 
+**Current Phase:** Pre-validation → MVP (4 weeks)
+
 **Target Market:** Solo real estate agents doing 7-20 transactions/year (~500,000 agents in US). Too sophisticated for budget tools, too small for enterprise CRMs.
 
-**Founder:** Non-technical entrepreneur with prompt engineering expertise, Deloitte background, building with AI tools (Claude Code, Cursor).
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React + Tailwind CSS |
+| Backend | Node.js + Express |
+| AI Layer | Claude Agent SDK + MCP Tools |
+| Infrastructure | GoHighLevel (invisible) |
+| Voice Input | Web Speech API (browser-native) |
+| Storage | Google Drive |
+
+---
+
+## Key Strategic Decisions
+
+| Date | Decision | Rationale | Decided By |
+|------|----------|-----------|------------|
+| Jan 2026 | Target 7-20 deal agents | Better spending capacity than 3-15 segment | Founder |
+| Jan 2026 | "Invisible CRM" positioning | Differentiated from dashboard-first competitors | Founder |
+| Jan 2026 | GHL Agency Pro ($497/mo) | Fixed cost enables scale economics | Founder |
+| Jan 2026 | Defer iMessage to V2 | Sendblue reliability issues; SMS has 98% open rates | Founder |
+| Jan 2026 | Data flywheel as moat | Long-term defensibility through aggregated insights | Founder |
+| Jan 2026 | $199 Solo pricing | Below $200 psychological threshold; validates with deposits | Founder |
+| Jan 2026 | B2C first, then B2B | Faster iteration, lower complexity, Cloze playbook | Founder |
+| Jan 2026 | React + Tailwind for frontend | Fast development, excellent documentation | Tech Architect |
+| Jan 2026 | Web Speech API for voice input | Browser-native, no additional infrastructure | Tech Architect |
+| Jan 2026 | Haiku for simple tasks, Sonnet for complex | Cost optimization | Prompt Architect |
+
+---
+
+## What NOT to Do (Anti-Patterns)
+
+These are validated anti-patterns. Do NOT violate these constraints:
+
+| Anti-Pattern | Why It's Wrong | What to Do Instead |
+|--------------|----------------|-------------------|
+| Assume NAR settlement creates urgency | Commissions actually increased post-settlement | Focus on pain points: complexity, time waste |
+| Lead with "AI-powered" in messaging | Overused, doesn't differentiate | Lead with outcome: "Run your business by talking" |
+| Build dashboards | Core thesis is CRM should be invisible | Build conversation-first interfaces only |
+| Pursue iMessage without validation | Technical complexity not justified until proven | Use SMS (98% open rates) via GHL |
+| Skip deposit collection | Level 1 evidence (money) is critical | Always validate with real money |
+| Ignore GHL platform risk | This is the #1 threat to the business | Monitor GHL AI Employee; maintain abstraction layer |
+| Hardcode API keys or secrets | Security vulnerability | Always use environment variables |
+| Over-engineer MVP features | Delays validation, wastes resources | Build minimum viable, validate, then expand |
+
+---
+
+## Mistakes Log
+
+### GHL API
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+### Voice Input / Web Speech API
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+### Claude Agent SDK / MCP
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+### React / Frontend
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+### Node.js / Backend
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+### General
+
+| Date | What Went Wrong | Correct Approach | Add to Prompts |
+|------|-----------------|------------------|----------------|
+| | *[To be filled during development]* | | |
+
+---
+
+## Patterns That Work
+
+*Document successful patterns here as they're discovered.*
+
+### Pattern Template
+
+```
+**Pattern Name:** [Name]
+**When to Use:** [Situation]
+**How It Works:** [Description]
+**Example:**
+[Code or implementation example]
+```
+
+### Discovered Patterns
+
+*[To be filled during development]*
+
+---
+
+## Architecture
+
+### Directory Structure
+
+```
+realty-copilot/
+├── .claude/
+│   ├── commands/           # Slash commands
+│   └── settings.json       # Permissions
+├── frontend/
+│   └── src/
+│       ├── components/     # React components (PascalCase)
+│       ├── hooks/          # Custom hooks (useCamelCase)
+│       ├── services/       # API calls (camelCase)
+│       └── utils/          # Helpers (camelCase)
+├── backend/
+│   └── src/
+│       ├── api/            # Route handlers
+│       ├── services/       # Business logic
+│       ├── tools/          # MCP tool definitions
+│       └── utils/          # Helpers
+├── common/
+│   └── types/              # Shared TypeScript types
+├── docs/
+│   ├── architecture/       # Technical documentation
+│   └── examples/           # Example inputs/outputs
+└── tests/                  # Mirrors src/ structure
+```
+
+### Naming Conventions
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Files | kebab-case | `contact-service.ts` |
+| Functions | camelCase | `createContact()` |
+| React Components | PascalCase | `ChatWindow.tsx` |
+| Types/Interfaces | PascalCase | `ContactData` |
+| Constants | SCREAMING_SNAKE | `GHL_API_VERSION` |
+| Hooks | useCamelCase | `useVoiceInput()` |
+
+---
+
+## API Reference
+
+### GHL Contacts API
+
+| Property | Value |
+|----------|-------|
+| Base URL | `https://services.leadconnectorhq.com` |
+| Version Header | `2021-07-28` |
+| Rate Limit | 100 requests per 10 seconds |
+
+**Endpoints:**
+
+| Method | Endpoint | Purpose |
+|--------|----------|---------|
+| POST | `/contacts/` | Create contact |
+| GET | `/contacts/{id}` | Read contact |
+| PUT | `/contacts/{id}` | Update contact |
+| GET | `/contacts/?query=` | Search contacts |
+| DELETE | `/contacts/{id}` | Delete contact |
+
+**Required Fields:** At least one of: `firstName`, `lastName`, `email`, `phone`
+
+### Claude API Cost Tiers
+
+| Model | Input Cost | Output Cost | Use For |
+|-------|------------|-------------|---------|
+| Haiku | $0.25/M tokens | $1.25/M tokens | Simple tasks, bulk operations |
+| Sonnet | $3/M tokens | $15/M tokens | Complex tasks, document generation |
+| Opus | $15/M tokens | $75/M tokens | Planning, multi-step reasoning |
+
+---
+
+## Environment Variables
+
+**NEVER hardcode these values. Always use environment variables.**
+
+```bash
+# GoHighLevel
+GHL_API_KEY=
+GHL_LOCATION_ID=
+
+# Claude / Anthropic
+CLAUDE_API_KEY=
+
+# Google OAuth
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Application
+NODE_ENV=
+PORT=
+```
+
+---
+
+## Current Sprint
+
+| Field | Value |
+|-------|-------|
+| **Building** | *[Current feature]* |
+| **Status** | Not started |
+| **Blocked on** | *[If applicable]* |
+| **Next up** | *[What's next]* |
 
 ---
 
 ## Key Documents
 
-| Document | Purpose | Version |
-|----------|---------|---------|
-| `Realty_Copilot_PRD_v3.md` | **Current PRD** - positioning, features, roadmap | v3.0 |
-| `UNIT_ECONOMICS.md` | Financial model, breakeven analysis | v1.0 |
-| `COMPETITIVE_ANALYSIS.md` | Competitor deep dives, positioning | v2.0 |
-| `TECHNICAL_FEASIBILITY.md` | Tech stack, risks, build plan | v2.0 |
-| `VALIDATION_PLAN.md` | Research & interview plan | v2.0 |
-| `Realty_Copilot_PRD_v2.md` | Previous PRD (superseded) | v2.0 |
-| `Realty_Copilot_PRD_v1.docx` | Original PRD (historical reference) | v1.0 |
+| Document | Purpose |
+|----------|---------|
+| `Realty_Copilot_PRD_v3.md` | What we're building |
+| `TECHNICAL_FEASIBILITY.md` | How we're building it |
+| `UNIT_ECONOMICS.md` | Business viability |
+| `COMPETITIVE_ANALYSIS.md` | Market context |
+| `VALIDATION_PLAN.md` | Testing assumptions |
+| `LEADERSHIP_ROSTER.md` | Team and responsibilities |
 
 ---
 
-## Critical Business Context
+## Standard Constraints
 
-### Unit Economics (RESOLVED - Favorable)
+**Copy this block into prompts:**
 
-**The Key Insight:** GoHighLevel Agency Pro costs $497/month FIXED regardless of user count. This creates exceptional operating leverage.
-
-| Agents | Revenue | Costs | Margin |
-|--------|---------|-------|--------|
-| 15 (breakeven) | $2,985 | $750 | 75% |
-| 50 | $9,950 | $1,100 | 89% |
-| 100 | $19,900 | $1,600 | 92% |
-
-Variable cost per agent: ~$10/month (Claude API only)
-
-### Pricing Tiers
-
-| Tier | Price | Target |
-|------|-------|--------|
-| Solo | $199/mo | Individual agents (7-20 deals) |
-| Team | $349/mo | Up to 5 users |
-| Brokerage | $599/mo | Up to 15 users |
-
-### Target Market (Refined)
-
-**Who:** Solo real estate agents doing 7-20 deals/year
-- Earns $55,000-$160,000 GCI
-- Too sophisticated for budget tools (LionDesk)
-- Too small for enterprise attention (Cloze eXp deal, Rechat)
-- ~500,000 agents in this segment
-
-**Why They're Underserved:**
-- 72.5% have CRM, but 45% barely use them
-- 76% cite complexity as primary frustration
-- Can't afford human assistants ($700-2,500/mo)
+```
+Follow directory structure in CLAUDE.md
+Use naming conventions in CLAUDE.md
+Never hardcode secrets—use environment variables
+GHL API requires version header: 2021-07-28
+GHL rate limit: 100 requests per 10 seconds
+Check Mistakes Log in CLAUDE.md before implementing
+Check Anti-Patterns section before making design decisions
+```
 
 ---
 
-## Competitive Position
+## Slash Commands
 
-### Primary Competitors
-
-| Competitor | Threat | Position |
-|------------|--------|----------|
-| **Cloze + Maia** | HIGH | Closest competitor, eXp deal, but dashboard-first |
-| **GHL AI Employee** | CRITICAL | Infrastructure provider building competing AI |
-| **Follow Up Boss** | MEDIUM | Team-focused, not pursuing solo agents |
-| **Rechat + Lucy** | LOW | Enterprise only, different segment |
-
-### Our Differentiation
-
-1. **Conversation-first** - Not dashboard + AI bolt-on
-2. **Solo agent focus** - Underserved by enterprise tools
-3. **Data flywheel** - Aggregated insights improve product
-4. **Simple pricing** - $199 flat vs. complex tiers
-
-### Platform Risk (GHL)
-
-**Risk Level: CRITICAL**
-
-GHL launched "AI Employee" (Voice AI, Conversation AI). They could commoditize our value prop.
-
-**Mitigation Strategy:**
-1. Move fast (12-18 month window)
-2. Go deeper on real estate vertical
-3. Build data moat through aggregated insights
-4. Maintain abstraction layer for potential migration
-
----
-
-## MVP Scope (4 Weeks)
-
-### In Scope
-- Web chat interface
-- Voice input (Web Speech API)
-- GHL Contacts integration (CRUD)
-- GHL Pipelines integration (basic)
-- Document generation (listings, emails)
-- Google Drive integration
-
-### Explicitly Deferred
-- iMessage/Sendblue (reliability issues, unvalidated need)
-- Proactive notifications
-- Native mobile app
-- Lock screen widget
-- Calendar integration
-- Team features
+| Command | Purpose |
+|---------|---------|
+| `/plan` | Enter planning mode with structured template |
+| `/verify` | Run verification on current implementation |
+| `/mistake` | Log a mistake to CLAUDE.md |
+| `/status` | Show current build progress |
 
 ---
 
@@ -156,148 +295,18 @@ GHL launched "AI Employee" (Voice AI, Conversation AI). They could commoditize o
 
 ---
 
-## Data Flywheel Strategy
+## Platform Risk Warning
 
-**The Long-Term Moat:** Aggregated, anonymized insights from agent behavior.
+**GHL Platform Risk: CRITICAL**
 
-**What We'll Learn:**
-- Optimal follow-up timing by lead type
-- Message templates with highest response rates
-- Pricing patterns by market
-- Vendor performance data
+GHL launched "AI Employee" (Voice AI, Conversation AI). They could commoditize our value prop.
 
-**Phases:**
-1. Learning (0-100 agents): Collect data
-2. Pattern Recognition (100-500): Begin insights
-3. Predictive (500-2,000): Proactive recommendations
-4. Market Intelligence (2,000+): Premium data products
+**Mitigation Strategy:**
+1. Move fast (12-18 month window)
+2. Go deeper on real estate vertical
+3. Build data moat through aggregated insights
+4. Maintain abstraction layer for potential migration
 
 ---
 
-## Questions for Future Sessions
-
-When resuming work:
-
-1. **Validation Progress:**
-   - Has Phase 1 research (Reddit) been completed?
-   - How many agent interviews done? What did they reveal?
-   - Any deposits collected?
-
-2. **Technical Progress:**
-   - Has GHL API spike been completed?
-   - Is Claude Agent SDK proof of concept working?
-   - Any blocking issues discovered?
-
-3. **Competitive Moves:**
-   - Has GHL announced new AI features?
-   - Any updates from Cloze, FUB?
-   - New entrants to watch?
-
-4. **Business Model:**
-   - Is $199 pricing validated?
-   - Any changes to target segment?
-   - Data flywheel strategy confirmed?
-
----
-
-## Decision Log
-
-| Date | Decision | Rationale |
-|------|----------|-----------|
-| Jan 2026 | Target 7-20 deal agents | Better spending capacity than 3-15 segment |
-| Jan 2026 | "Invisible CRM" positioning | Differentiated from dashboard-first competitors |
-| Jan 2026 | $497 GHL Agency Pro | Fixed cost enables scale economics |
-| Jan 2026 | Defer iMessage to V2 | Sendblue reliability issues; SMS has 98% open rates |
-| Jan 2026 | Data flywheel as moat | Long-term defensibility through aggregated insights |
-| Jan 2026 | $199 Solo pricing | Below $200 psychological threshold; validates with deposits |
-| Jan 2026 | B2C first, then B2B | Faster iteration, lower complexity, Cloze playbook |
-
----
-
-## Founder Context
-
-**Background:**
-- Manager at Deloitte (4-5 years, "Exceptional" ratings)
-- Building Vera (FemTech/maternal health) in parallel
-- Personal experience: Bought and sold two homes
-- Expertise: Prompt engineering, context engineering
-
-**Technical Ability:** Non-technical; relies on AI tools (Claude Code, Cursor)
-
-**Budget:** $10K for MVP development
-
-**Timeline:** 4 weeks to demo
-
-**Communication Style:**
-- Direct, honest feedback preferred
-- Explain technical concepts simply
-- Prefers early pivots over building wrong thing
-
----
-
-## What NOT to Do
-
-1. **Don't assume NAR settlement creates urgency** - Commissions actually increased post-settlement
-2. **Don't lead with "AI-powered"** - Overused, doesn't differentiate
-3. **Don't build dashboards** - Core thesis is CRM should be invisible
-4. **Don't pursue iMessage without validation** - Technical complexity not justified until proven
-5. **Don't skip deposit collection** - Level 1 evidence (money) is critical
-6. **Don't ignore GHL platform risk** - This is the #1 threat
-
----
-
-## How to Use This Repository
-
-```bash
-# Start here - project context
-cat CLAUDE.md
-
-# Current PRD
-cat Realty_Copilot_PRD_v3.md
-
-# Financial model
-cat UNIT_ECONOMICS.md
-
-# Supporting analysis
-cat COMPETITIVE_ANALYSIS.md
-cat TECHNICAL_FEASIBILITY.md
-cat VALIDATION_PLAN.md
-```
-
----
-
-## File Structure
-
-```
-Realtor-Copilot/
-├── CLAUDE.md                      # This file - project context
-├── Realty_Copilot_PRD_v3.md      # Current PRD
-├── Realty_Copilot_PRD_v2.md      # Previous PRD (reference)
-├── Realty_Copilot_PRD_v1.docx    # Original PRD (historical)
-├── UNIT_ECONOMICS.md              # Financial model
-├── COMPETITIVE_ANALYSIS.md        # Competitor analysis
-├── TECHNICAL_FEASIBILITY.md       # Tech assessment
-└── VALIDATION_PLAN.md             # Research & interview plan
-```
-
----
-
-## Next Steps
-
-**Immediate (This Week):**
-1. Run Gemini Deep Research queries on Reddit/forums
-2. Begin interview recruitment
-3. Complete GHL API spike
-
-**Short Term (Week 2-3):**
-1. Conduct 10-15 agent interviews
-2. Complete Claude Agent SDK proof of concept
-3. Build landing page
-4. Collect deposits
-
-**Decision Point (End of Week 3):**
-GO/PIVOT/KILL based on validation results
-
----
-
-*Last updated: January 2026*
+*Last updated: January 2026 by Claude Code*

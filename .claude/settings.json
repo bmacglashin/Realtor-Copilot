@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "npm install",
+      "npm run",
+      "npm run dev",
+      "npm run build",
+      "npm run test",
+      "npm run lint",
+      "npm start",
+      "npx",
+      "node",
+      "git status",
+      "git add",
+      "git commit",
+      "git push",
+      "git pull",
+      "git branch",
+      "git checkout",
+      "git log",
+      "git diff",
+      "git fetch",
+      "git merge",
+      "git stash",
+      "cat",
+      "ls",
+      "mkdir",
+      "touch",
+      "echo",
+      "cd",
+      "pwd",
+      "cp",
+      "mv",
+      "head",
+      "tail",
+      "grep",
+      "find",
+      "curl"
+    ],
+    "deny": [
+      "rm -rf",
+      "sudo",
+      "chmod 777",
+      "rm -r node_modules"
+    ]
+  }
+}
