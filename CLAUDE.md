@@ -6,7 +6,7 @@
 **What is this project?**
 AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core innovation: agents talk to their CRM instead of clicking through dashboards.
 
-**Current Status:** Pre-validation. Documents complete. Ready for Phase 1 research (Reddit/forums) followed by 10-15 agent interviews.
+**Current Status:** Ready for MVP Week 1. Technical spike complete. All infrastructure validated.
 
 **Key Strategic Decisions Made:**
 1. Target: Solo agents doing 7-20 deals/year
@@ -59,6 +59,47 @@ AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core
 | Jan 2026 | React + Tailwind for frontend | Fast development, excellent documentation | Tech Architect |
 | Jan 2026 | Web Speech API for voice input | Browser-native, no additional infrastructure | Tech Architect |
 | Jan 2026 | Haiku for simple tasks, Sonnet for complex | Cost optimization | Prompt Architect |
+| Jan 2026 | GHL OAuth over Private Integration | Sub-Account scopes only available via OAuth flow | Tech Architect |
+| Jan 2026 | Token refresh required | Access tokens expire in 24hrs; refresh tokens last 1yr | Tech Architect |
+| Jan 2026 | Human-in-the-Loop mandatory | All external communications require agent approval | War Room |
+| Jan 2026 | Document Tiers 1-4 | Tier 1 (MVP), Tier 2-3 (V1 via BYOF), Tier 4 (never) | War Room |
+| Jan 2026 | AI Disclosure proactive | Always disclose AI assistance on generated content | War Room |
+| Jan 2026 | Tasks & Notes in MVP | Added to MVP scope for complete CRM foundation | War Room |
+| Jan 2026 | Click-to-Call in MVP | Trivial to implement, keeps agent in our interface | War Room |
+| Jan 2026 | Smart Lists in V1 | Essential for Prospecting Campaigns feature | War Room |
+| Jan 2026 | E-Signatures deferred to V2 | Technical + legal complexity; agents have DocuSign | War Room |
+| Jan 2026 | V1 timeline extended | +2-3 weeks (Weeks 5-14) for new features | War Room |
+
+---
+
+## Legal & Compliance Framework
+
+**Full details:** See `COMPLIANCE.md`
+
+### Core Principle: Human-in-the-Loop
+All external communications require explicit agent approval. AI drafts; agent reviews, edits, and approves before sending. This creates a legal safe harbor.
+
+### Document Risk Tiers
+| Tier | Risk | Examples | Approach |
+|------|------|----------|----------|
+| 1 | Low | Listing descriptions, emails, marketing | AI generates, agent reviews |
+| 2 | Medium | Touring agreements | BYOF (agent uploads form, AI prefills) |
+| 3 | High | BRAs with compensation | BYOF + compliance warnings |
+| 4 | Prohibited | Purchase contracts, deeds | Never generate |
+
+### MVP Compliance Requirements
+- Tier 1 documents only
+- All external messages require approval workflow
+- AI disclosure footer on generated content
+- State selection during onboarding
+- Compliance timestamping (GPS + time + events)
+
+### Prohibited (Never Build)
+- Auto-send without approval
+- AI negotiating autonomously
+- Contract interpretation as legal advice
+- Outbound cold calls by AI
+- Tier 4 document generation
 
 ---
 
@@ -76,6 +117,9 @@ These are validated anti-patterns. Do NOT violate these constraints:
 | Ignore GHL platform risk | This is the #1 threat to the business | Monitor GHL AI Employee; maintain abstraction layer |
 | Hardcode API keys or secrets | Security vulnerability | Always use environment variables |
 | Over-engineer MVP features | Delays validation, wastes resources | Build minimum viable, validate, then expand |
+| Auto-send messages without agent approval | Removes human-in-the-loop safe harbor; legal liability | Always require explicit approval before external comms |
+| Generate Tier 4 documents (contracts, deeds) | High legal risk; agents use DocuSign/state forms | Stick to Tier 1-3 per COMPLIANCE.md |
+| Position AI as "agent" or "licensed" | Implies unlicensed practice of real estate | Use "AI Receptionist" or "AI assistant" framing |
 
 ---
 
@@ -240,10 +284,10 @@ PORT=
 
 | Field | Value |
 |-------|-------|
-| **Building** | *[Current feature]* |
-| **Status** | Not started |
-| **Blocked on** | *[If applicable]* |
-| **Next up** | *[What's next]* |
+| **Building** | Week 1: Project Scaffolding & Chat Interface |
+| **Status** | Ready to start |
+| **Blocked on** | Nothing - all infrastructure validated |
+| **Next up** | Initialize Next.js project, deploy to Vercel |
 
 ---
 
@@ -251,12 +295,14 @@ PORT=
 
 | Document | Purpose |
 |----------|---------|
-| `Realty_Copilot_PRD_v3.md` | What we're building |
+| `AgentAlly_PRD_v2.md` | What we're building (to be updated to v3) |
 | `TECHNICAL_FEASIBILITY.md` | How we're building it |
 | `UNIT_ECONOMICS.md` | Business viability |
 | `COMPETITIVE_ANALYSIS.md` | Market context |
 | `VALIDATION_PLAN.md` | Testing assumptions |
 | `LEADERSHIP_ROSTER.md` | Team and responsibilities |
+| `COMPLIANCE.md` | Legal compliance framework |
+| `GHL_TECHNICAL_SPIKE_RESULTS.md` | API validation results |
 
 ---
 
@@ -297,18 +343,20 @@ Realtor-Copilot/
 - [x] Unit economics model
 - [x] Technical feasibility assessment
 - [x] Validation plan creation
+- [x] GHL API technical spike ✅ ALL TESTS PASSED (Jan 2026)
+- [x] Infrastructure setup (Supabase, Vercel, Anthropic)
+- [x] Legal compliance framework (War Room approved)
 
 ### Not Yet Started
 - [ ] Phase 1: Reddit/forum research (Gemini Deep Research)
 - [ ] Phase 2: Agent interviews (10-15)
 - [ ] Phase 3: Deposit collection (target: 3+)
-- [ ] GHL API technical spike
-- [ ] Claude Agent SDK proof of concept
+- [ ] Week 1 MVP build
 
 ### GO/NO-GO Criteria
-- 3+ deposits at $199 price point
+- 3+ deposits at $149-249 price point
 - 60%+ interview validation on critical hypotheses
-- No technical blockers
+- No technical blockers ✅ CONFIRMED
 
 ---
 
