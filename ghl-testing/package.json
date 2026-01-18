@@ -1,0 +1,26 @@
+{
+  "name": "ghl-api-validation",
+  "version": "1.0.0",
+  "description": "GoHighLevel API validation spike for Realty Copilot",
+  "main": "scripts/test-ghl-api.js",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/test-ghl-api.js",
+    "test:verbose": "DEBUG=true node scripts/test-ghl-api.js"
+  },
+  "keywords": [
+    "gohighlevel",
+    "api",
+    "validation",
+    "realty-copilot"
+  ],
+  "author": "Realty Copilot",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
