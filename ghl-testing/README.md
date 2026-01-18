@@ -38,7 +38,48 @@ npm test
 
 ---
 
+## Important: OAuth Flow (Not Private Integration)
+
+During our technical spike, we discovered that the scopes needed for AgentAlly (contacts, opportunities, conversations) are **only available via OAuth apps** created in the GHL Marketplace, not via Private Integrations in the sub-account settings.
+
+### Why OAuth?
+
+| Approach | Result |
+|----------|--------|
+| Private Integration (in sub-account) | ❌ Scopes not available |
+| Private Integration (at agency level) | ❌ Wrong scopes (agency-level only) |
+| **OAuth App via Marketplace** | ✅ All scopes available |
+
+### OAuth Token Exchange Note
+
+The GHL token exchange endpoint requires `application/x-www-form-urlencoded` content type, NOT JSON:
+```javascript
+// CORRECT
+const data = new URLSearchParams({
+  client_id: CLIENT_ID,
+  client_secret: CLIENT_SECRET,
+  grant_type: 'authorization_code',
+  code: AUTH_CODE,
+  redirect_uri: REDIRECT_URI,
+}).toString();
+
+headers: {
+  'Content-Type': 'application/x-www-form-urlencoded',
+}
+```
+
+### Token Expiration
+
+- **Access Token:** ~24 hours
+- **Refresh Token:** ~1 year
+
+The application must implement automatic token refresh.
+
+---
+
 ## Finding Your GHL Credentials
+
+> ⚠️ **UPDATE (January 2026):** The instructions below describe Private Integrations, which we discovered do NOT provide the scopes needed for AgentAlly. See the **"Important: OAuth Flow"** section above for the correct approach using OAuth via the GHL Marketplace.
 
 ### Step 1: Get Your API Key
 
