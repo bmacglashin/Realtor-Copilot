@@ -253,6 +253,24 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 
 ---
 
+### Gap 4: Compliance-First Architecture
+
+**Current State:** Most competitors treat compliance as an afterthought. "Auto-pilot" features that send messages without approval create legal risk for agents.
+
+**Our Position:** Human-in-the-Loop is architecturally enforced, not optional. Every external communication requires explicit agent approval. Agents are protected by design.
+
+**Why This Matters:**
+- South Carolina law (§ 40-57-820) explicitly makes agents liable for AI work product
+- Competitors with auto-send features expose agents to license risk
+- Our approval workflows are a feature, not friction
+- Post-NAR settlement scrutiny makes compliance more important
+
+**Marketing Position:** "AgentAlly protects your license. Every AI communication requires your approval before it's sent."
+
+**Time to Copy:** Medium (6-12 months)—requires architectural changes to implement properly. Competitors built on auto-pilot patterns would need significant refactoring.
+
+---
+
 ## Competitive Response Predictions
 
 ### If AgentAlly Gains Traction:
@@ -302,6 +320,9 @@ Competing on price, not innovation. Support issues and dated UI make them unlike
 
 **Against "Do Nothing" (Spreadsheets/Memory):**
 "You're losing 5 hours a week to admin and leads to faster agents. Your first competitor is your own disorganization."
+
+**Against "Auto-Pilot" Competitors:**
+"Other tools send messages automatically. AgentAlly never sends anything without your explicit approval. Your license, your control."
 
 ---
 
