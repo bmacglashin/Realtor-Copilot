@@ -89,6 +89,18 @@ At $199/mo Solo price and $600 fixed + $10/agent variable:
 - Document Generation tool
 - Google Drive tool
 
+**MCP Tools Architecture:**
+
+| MCP Tool | Function | GHL Endpoint(s) |
+|----------|----------|-----------------|
+| `ghl_contacts` | Create, read, update, delete, search contacts | `/contacts/`, `/contacts/{id}` |
+| `ghl_pipelines` | Manage deals, move stages, update values | `/opportunities/`, `/pipelines/` |
+| `ghl_tasks` | Create, read, update, delete tasks per contact | `/contacts/{id}/tasks` |
+| `ghl_notes` | Create, read notes per contact | `/contacts/{id}/notes` |
+| `ghl_contact_tags` | Add/remove tags on contacts | `/contacts/{id}/tags` |
+| `doc_generate` | Generate listing descriptions, emails, letters | Claude API |
+| `gdrive_save` | Save documents to agent's Google Drive | Google Drive API |
+
 **Implementation Pattern:**
 ```
 User: "Add Sarah Johnson, buyer, looking in Buckhead, budget 500K"
@@ -332,6 +344,90 @@ const saveDocument = async (content, filename, folderId) => {
 
 ---
 
+## 7. Compliance Architecture
+
+### 7.1 Approval Workflow Engine
+
+Every external communication requires explicit agent approval. This is architecturally enforced, not optional.
+
+**Required Components:**
+1. **Content Preview** - Full message displayed before approval
+2. **Edit Capability** - Agent can modify before sending
+3. **Explicit Approval** - Checkbox + button, not just "continue"
+4. **Audit Logging** - Timestamp, content hash, agent ID recorded
+5. **Bypass Prevention** - No code path allows skipping approval
+
+**Approval UI Pattern:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│  ⚠️ REVIEW REQUIRED                                          │
+│                                                             │
+│  You are responsible for all content sent to clients.       │
+│  Please review carefully.                                   │
+│                                                             │
+│  [Full preview of content]                                  │
+│                                                             │
+│  ☐ I have reviewed and approve this content                 │
+│                                                             │
+│  [Edit]  [Cancel]  [✓ Approve & Send]                       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 7.2 State Rules Engine
+
+Configuration system that enforces state-specific compliance:
+
+```javascript
+const stateRules = {
+  "GA": {
+    advertisingRules: {
+      brokerageNameRule: "equalOrGreater",
+      phoneRequired: true
+    },
+    documentRestrictions: ["deeds", "closingDocs"],
+    voiceRestrictions: ["outboundColdCalls"],
+    closingType: "attorney"
+  }
+};
+```
+
+### 7.3 Audit Trail System
+
+All AI-generated content must be logged for compliance:
+
+```javascript
+{
+  id: "uuid",
+  timestamp: "ISO-8601",
+  agentId: "agent_uuid",
+  action: "content_generated | reviewed | edited | approved | sent",
+  contentHash: "sha256",
+  contentFull: "encrypted_content",
+  metadata: {
+    documentType: "email | sms | listing_description",
+    contactId: "ghl_contact_id",
+    dealId: "ghl_opportunity_id",
+    disclosureIncluded: true,
+    editsMade: true
+  }
+}
+```
+
+**Retention:** Minimum 7 years
+
+### 7.4 Document Classification System
+
+Routes documents through appropriate workflows based on risk tier:
+
+| Tier | Workflow | Examples |
+|------|----------|----------|
+| 1 | AI generates → Agent reviews → Send | Emails, listing descriptions |
+| 2 | BYOF prefill → Agent reviews → External signature | Touring agreements |
+| 3 | BYOF prefill → Compliance warnings → Agent reviews → External signature | BRAs |
+| 4 | BLOCKED | Purchase contracts, deeds |
+
+---
+
 ## Deferred Components
 
 ### Sendblue iMessage (V2)
@@ -380,6 +476,7 @@ const saveDocument = async (content, filename, folderId) => {
 | 2-3 | Claude Agent SDK setup + MCP scaffold | Hello world MCP tool |
 | 3-4 | GHL Contacts MCP tool | Create/read/update contacts |
 | 4-5 | Basic chat interface | Input → response flow |
+| 5 | Approval workflow design | UI mockups, data flow documented |
 
 ### Week 2: Core Features
 **Goal:** Primary use cases functional
@@ -390,6 +487,7 @@ const saveDocument = async (content, filename, folderId) => {
 | 2-3 | Document generation tool | Listing descriptions |
 | 3-4 | Google Drive integration | Documents saved |
 | 4-5 | Conversation persistence | History maintained |
+| 5 | Approval workflow engine implementation | Preview/edit/approve flow working |
 
 ### Week 3: Enhancement
 **Goal:** Voice and polish
@@ -400,6 +498,7 @@ const saveDocument = async (content, filename, folderId) => {
 | 2-3 | GHL Pipeline MCP tool | Deal status queries |
 | 3-4 | Error handling + edge cases | Graceful failures |
 | 4-5 | UI polish + mobile responsiveness | Looks professional |
+| 5 | State selection at onboarding | State rules integrated |
 
 ### Week 4: Testing
 **Goal:** Beta-ready
@@ -410,6 +509,7 @@ const saveDocument = async (content, filename, folderId) => {
 | 2-3 | Beta onboarding flow | Self-service signup |
 | 3-4 | 5 beta agents onboarded | Real usage data |
 | 4-5 | Feedback collection + iteration | Prioritized backlog |
+| 5 | Audit trail verification | Compliance logging confirmed |
 
 ---
 
@@ -446,6 +546,15 @@ const saveDocument = async (content, filename, folderId) => {
 - Use established patterns (React, REST APIs)
 - Budget for fractional CTO review
 - Scope MVP aggressively
+
+### Risk 5: Approval Workflow Bypass
+**Risk:** Agent liability exposure if messages sent without approval
+**Probability:** Low
+**Mitigation:**
+- Architectural enforcement; no code path skips approval
+- All external communication routes through ApprovalService
+- Audit logging captures every approval event
+- Code review checklist includes approval verification
 
 ---
 
