@@ -45,6 +45,50 @@ This document models the financial viability of AgentAlly at various scale point
 - Requires dedicated support and potentially custom features
 - Minimum $1,500/mo recommended
 
+### Updated Tier Structure (War Room - January 2026)
+
+The following tier structure was approved in the January 2026 War Room session, superseding the earlier Solo/Team/Brokerage analysis:
+
+| Tier | Price | Target |
+|------|-------|--------|
+| Core | $149/month | Solo agents replacing basic CRM |
+| Growth | $249/month | Scaling agents (12+ deals/year) |
+| Enterprise | $599/month | Teams (up to 15 users) |
+
+### Growth Tier Feature Justification
+
+The Growth tier ($249/mo) includes higher-value features that justify the premium:
+
+| Feature | Value Proposition | API Cost Impact |
+|---------|-------------------|-----------------|
+| **Negotiation Coaching** | Strategic advice solo agents can't otherwise afford | Medium (Sonnet) |
+| **Pricing Strategy Assistant** | CMA-level analysis without manual work | Medium (Sonnet) |
+| **Scheduling Coordination** | Automate inspector/photographer booking | Low (Haiku) |
+| **AI Receptionist** (V2) | Never miss a lead call | Per-minute |
+| **Offer Strategy Coach** (V1.5) | Structure competitive offers | Medium (Sonnet) |
+
+These features have medium API costs but deliver differentiated value unavailable elsewhere at this price point. A human transaction coordinator costs $350-500/file; our Growth tier provides TC-level support for $249/month flat.
+
+### Tier Distribution Assumptions
+
+| Tier | Price | Expected % of Users | Rationale |
+|------|-------|---------------------|-----------|
+| Core | $149 | 60% | LionDesk refugees, basic CRM needs |
+| Growth | $249 | 30% | Scaling agents (12+ deals), need coaching |
+| Enterprise | $599 | 10% | Small teams, brokerages |
+
+**Blended ARPU:** $184/month
+
+### Unit Economics by Tier Mix
+
+Using GHL Agency Pro ($497/mo fixed) + Claude API (~$10/agent variable):
+
+| Scenario | Core (60%) | Growth (30%) | Enterprise (10%) | Blended MRR | Gross Margin |
+|----------|------------|--------------|------------------|-------------|--------------|
+| 50 agents | 30 × $149 | 15 × $249 | 5 × $599 | $11,200 | 89% |
+| 100 agents | 60 × $149 | 30 × $249 | 10 × $599 | $22,400 | 93% |
+| 250 agents | 150 × $149 | 75 × $249 | 25 × $599 | $56,000 | 96% |
+
 ---
 
 ## Cost Structure

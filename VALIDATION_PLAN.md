@@ -183,15 +183,33 @@ For each source, document:
 11. "At what price would you say 'that's so cheap I'd question the quality'?"
     - *Van Westendorp question 2*
 
+#### Compliance & Trust Questions
+
+12. "How do you feel about AI tools that send messages automatically without your review?"
+    - *Listen for: Trust concerns, liability awareness, preference for control*
+    - *Validates: Human-in-the-Loop is seen as feature, not friction*
+
+13. "If an AI drafted a response to a counter-offer, would you want to review it before sending?"
+    - *Listen for: Comfort level with AI in high-stakes communication*
+    - *Validates: Human-in-the-Loop acceptance for Growth tier features*
+
+14. "How important is it that your tools protect your license?"
+    - *Listen for: Awareness of liability, value placed on compliance*
+    - *Validates: Compliance-first positioning resonates*
+
+15. "Would you pay more for a tool that included negotiation strategy suggestions?"
+    - *Listen for: Interest level, price sensitivity for premium features*
+    - *Validates: Growth tier ($249) value proposition*
+
 #### Close (2 min)
 
-12. "Would you be interested in testing an early version and giving feedback?"
+16. "Would you be interested in testing an early version and giving feedback?"
     - *Level 2 evidence: time commitment*
 
-13. "We're doing founding member spots for $50 down. Would you want to reserve your spot?"
+17. "We're doing founding member spots for $50 down. Would you want to reserve your spot?"
     - *Level 1 evidence: money commitment*
 
-14. "Who else should I talk to? Anyone you know who struggles with similar challenges?"
+18. "Who else should I talk to? Anyone you know who struggles with similar challenges?"
     - *Referral generation*
 
 ### Interview Analysis Framework
@@ -216,6 +234,13 @@ After each interview, score:
 - [ ] 40%+ indicate $199/mo is acceptable (Van Westendorp)
 - [ ] 50%+ commit to testing (Level 2 evidence)
 - [ ] **3+ commit deposits (Level 1 evidence)**
+
+### Compliance Validation Criteria
+
+- [ ] 80%+ prefer human-in-the-loop over auto-send
+- [ ] 60%+ express interest in negotiation coaching feature
+- [ ] 50%+ indicate concern about AI liability without approval workflows
+- [ ] 40%+ indicate willingness to pay premium ($249) for coaching features
 
 ---
 
@@ -363,6 +388,27 @@ After each interview, score:
 - Strong privacy concerns about any data sharing
 - No interest in benchmarking/comparison features
 - Legal/compliance blockers
+
+---
+
+### Hypothesis 6: Human-in-the-Loop Is a Feature, Not Friction
+**Priority:** High
+
+**Claim:** Agents will prefer approval workflows over auto-send, seeing control as a benefit rather than inconvenience.
+
+**Validation Method:**
+- Phase 2: Interview questions 12-14 (Compliance & Trust)
+- Phase 3: A/B test messaging ("You control every message" vs. generic)
+
+**Evidence Required:**
+- 80%+ express preference for review before send
+- Qualitative feedback that approval = protection
+- No significant objections to approval requirement
+
+**Kill Criteria:**
+- <50% prefer approval workflows
+- Agents describe approval as "extra steps" or "friction"
+- Strong preference for "set it and forget it" automation
 
 ---
 
