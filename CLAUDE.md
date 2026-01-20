@@ -1,5 +1,5 @@
 # CLAUDE.md - AgentAlly Project Context
-*Last Updated: January 2026 (v2)*
+*Last Updated: January 2026 (v3 — Engineering Brief Integration)*
 
 ## Quick Start for New Sessions
 
@@ -20,7 +20,7 @@ AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core
 
 ## Project Overview
 
-**Project Name:** Realty Copilot
+**Project Name:** AgentAlly
 
 **Description:** "Claude Code for real estate" — AI that lets agents run their business by talking. GHL is invisible infrastructure; Claude IS the interface.
 
@@ -34,14 +34,21 @@ AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core
 
 ## Tech Stack
 
-| Document | Purpose | Version |
-|----------|---------|---------|
-| `AgentAlly_PRD_v2.md` | **Current PRD** - positioning, features, roadmap | v2.1.2 |
-| `UNIT_ECONOMICS.md` | Financial model, breakeven analysis | v1.0 |
-| `COMPETITIVE_ANALYSIS.md` | Competitor deep dives, positioning | v2.0 |
-| `TECHNICAL_FEASIBILITY.md` | Tech stack, risks, build plan | v2.0 |
-| `VALIDATION_PLAN.md` | Research & interview plan | v2.0 |
-| `RESEARCH_SYNTHESIS_v2.md` | Deep research synthesis and one-pager | v2.0 |
+| Layer | Technology | Rationale |
+|-------|------------|-----------|
+| Frontend | Next.js 14+ App Router, React 18, Tailwind CSS | Vercel-optimized, combined frontend/backend |
+| State Management | Zustand | Simple, lightweight, excellent for optimistic UI |
+| UI Components | Radix UI | Accessible, unstyled primitives |
+| Animation | Framer Motion | Physics-based, professional feel |
+| Backend | Next.js API Routes + Server Actions | No separate backend needed |
+| Database | Supabase (PostgreSQL) | Chat history, user settings, room to grow |
+| AI | Claude Agent SDK, Anthropic API | Core conversation intelligence |
+| CRM | GoHighLevel API | Contact management, pipelines, messaging |
+| Maps | Mapbox GL JS | Territory visualization, Charleston styling |
+| Geocoding | Mapbox Geocoding API | Address-to-coordinates conversion |
+| Documents | Google Drive API | Template storage and sharing |
+| Voice | Web Speech API | Browser-native voice input |
+| Hosting | Vercel | Optimized for Next.js |
 
 ---
 
@@ -69,6 +76,29 @@ AgentAlly is an AI-powered "invisible CRM" for solo real estate agents. The core
 | Jan 2026 | Smart Lists in V1 | Essential for Prospecting Campaigns feature | War Room |
 | Jan 2026 | E-Signatures deferred to V2 | Technical + legal complexity; agents have DocuSign | War Room |
 | Jan 2026 | V1 timeline extended | +2-3 weeks (Weeks 5-14) for new features | War Room |
+| Jan 2026 | Zustand for state management | Simple, lightweight, excellent for optimistic UI | Tech Architect |
+| Jan 2026 | Next.js 14+ with App Router | React + backend combined, Vercel optimized | Engineering Brief |
+| Jan 2026 | Supabase for chat history | Robust, persistent across sessions, room to grow | Engineering Brief |
+| Jan 2026 | Polling every 60 seconds for briefings | WebSockets over-engineering for MVP | Tech Architect |
+| Jan 2026 | Mapbox Geocoding API for addresses | Convert addresses to lat/lng automatically, same vendor as maps | Tech Architect |
+| Jan 2026 | Document mode replaces briefing panel | Document preview replaces Today's Briefing when generating | Engineering Brief |
+| Jan 2026 | Map detail as side panel (desktop) | Appears on right; mobile: slides up from bottom | Engineering Brief |
+| Jan 2026 | Claude Code creates empty states | Don't wait for CDO mockups | Engineering Brief |
+| Jan 2026 | Territory center via text input + geolocation | Let agent choose method at onboarding | Engineering Brief |
+| Jan 2026 | Single GHL API key for MVP | Saves 2-3 days; OAuth deferred to V1 | Engineering Brief |
+| Jan 2026 | Mapbox light-v11 style + code customization | Faster than custom studio style | Engineering Brief |
+| Jan 2026 | Google Drive integration ready | Google Cloud project created, credentials ready | Tech Architect |
+| Jan 2026 | Verify Claude Agent SDK against current docs | Package name may have changed | Engineering Brief |
+| Jan 2026 | SMS flow: Draft → Edit → Send | AI drafts, agent can edit, then approves | Engineering Brief |
+| Jan 2026 | Templates: upload/preview/delete/use only | NO in-browser editing for MVP | Engineering Brief |
+| Jan 2026 | Client docs show both generated + uploaded | Unified list with tags | Engineering Brief |
+| Jan 2026 | GHL calendar fallback if no Google Calendar | If Google Calendar not connected | Engineering Brief |
+| Jan 2026 | Mapbox account setup before Week 3 | Dependency for Your Territory feature | Tech Architect |
+| Jan 2026 | Proceed without CDO mockups | Use ASCII layouts from Engineering Brief | Engineering Brief |
+| Jan 2026 | Domain purchased: getagentally.com | Ready for deployment | Founder |
+| Jan 2026 | Decision protocol: Decide + Document + Flag | Make reasonable decisions, document, flag for review | Engineering Brief |
+| Jan 2026 | React Error Boundaries at 3 levels | Root, Chat panel, Map component for graceful failures | Tech Architect |
+| Jan 2026 | Pin @anthropic-ai/sdk version | Avoid breaking changes from "latest" | Tech Architect |
 
 ---
 
@@ -188,28 +218,54 @@ These are validated anti-patterns. Do NOT violate these constraints:
 ### Directory Structure
 
 ```
-realty-copilot/
+agentally/
 ├── .claude/
 │   ├── commands/           # Slash commands
 │   └── settings.json       # Permissions
-├── frontend/
-│   └── src/
-│       ├── components/     # React components (PascalCase)
-│       ├── hooks/          # Custom hooks (useCamelCase)
-│       ├── services/       # API calls (camelCase)
-│       └── utils/          # Helpers (camelCase)
-├── backend/
-│   └── src/
-│       ├── api/            # Route handlers
-│       ├── services/       # Business logic
-│       ├── tools/          # MCP tool definitions
-│       └── utils/          # Helpers
-├── common/
-│   └── types/              # Shared TypeScript types
+├── app/
+│   ├── (dashboard)/
+│   │   ├── page.tsx        # Command Center (Chat)
+│   │   ├── territory/
+│   │   │   └── page.tsx    # Your Territory (Map)
+│   │   ├── clients/
+│   │   │   └── [id]/
+│   │   │       └── page.tsx # Client Profile
+│   │   ├── templates/
+│   │   │   └── page.tsx    # Template Library
+│   │   └── settings/
+│   │       └── page.tsx    # Settings
+│   ├── onboarding/
+│   │   └── page.tsx        # 4-step onboarding
+│   ├── api/
+│   │   ├── chat/
+│   │   │   └── route.ts    # Chat endpoint (Claude)
+│   │   ├── ghl/
+│   │   │   └── route.ts    # GHL proxy endpoints
+│   │   └── webhooks/
+│   │       └── route.ts    # Incoming webhooks
+│   ├── layout.tsx          # Root layout
+│   └── globals.css         # Global styles
+├── components/
+│   ├── chat/               # Chat-related components
+│   ├── map/                # Map-related components
+│   ├── ui/                 # Reusable UI components
+│   └── layout/             # Layout components
+├── lib/
+│   ├── supabase/           # Supabase client
+│   ├── ghl/                # GHL API wrapper
+│   ├── claude/             # Claude SDK setup
+│   └── mapbox/             # Mapbox utilities
+├── stores/
+│   └── index.ts            # Zustand stores
+├── types/
+│   └── index.ts            # TypeScript types
 ├── docs/
-│   ├── architecture/       # Technical documentation
-│   └── examples/           # Example inputs/outputs
-└── tests/                  # Mirrors src/ structure
+│   ├── ENGINEERING_BRIEF_MVP.md
+│   ├── ENGINEERING_BRIEF_TECHNICAL_REVIEW.md
+│   ├── MAPBOX_FEASIBILITY_ASSESSMENT.md
+│   └── architecture/
+└── public/
+    └── icons/
 ```
 
 ### Naming Conventions
@@ -222,6 +278,64 @@ realty-copilot/
 | Types/Interfaces | PascalCase | `ContactData` |
 | Constants | SCREAMING_SNAKE | `GHL_API_VERSION` |
 | Hooks | useCamelCase | `useVoiceInput()` |
+
+### Database Schema
+
+```sql
+-- Chat history
+CREATE TABLE chat_messages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id TEXT NOT NULL,
+  role TEXT NOT NULL, -- 'user' or 'assistant'
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- User settings
+CREATE TABLE user_settings (
+  user_id TEXT PRIMARY KEY,
+  agent_name TEXT,
+  territory_center JSONB, -- { lat, lng }
+  preferences JSONB,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+---
+
+## Design System (Charleston Palette)
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Charleston Green | #232B2B | Primary text, sidebar |
+| Bone/Cream | #E8E4D9 | Background, cards |
+| Warm Indigo | #4F46E5 | Primary actions, active listing pins |
+| Antique Brass | #C19A6B | Success, "under contract" pins |
+| Sage Green | #9CAF88 | Secondary success, closed pins |
+| Terracotta | #E07A5F | Warnings, "needs attention" pins |
+| Soft White | #FAFAF9 | Page background |
+
+### Pin Visual System
+
+| Stage | Color | Animation |
+|-------|-------|-----------|
+| Active Listing | Warm Indigo | Subtle glow |
+| Under Contract | Antique Brass | None |
+| Needs Attention | Terracotta | Pulsing |
+| Closed | Sage (faded) | Brief celebration |
+
+---
+
+## Performance Requirements
+
+| Interaction | Target |
+|-------------|--------|
+| Button click | <100ms (optimistic UI) |
+| Voice input start | <200ms |
+| Claude response start | <1s (streaming) |
+| Claude response complete | <3s average |
+| Map render | <2s |
 
 ---
 
@@ -269,9 +383,17 @@ GHL_LOCATION_ID=
 # Claude / Anthropic
 CLAUDE_API_KEY=
 
+# Mapbox
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=
+
 # Google OAuth
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
 # Application
 NODE_ENV=
@@ -284,10 +406,43 @@ PORT=
 
 | Field | Value |
 |-------|-------|
-| **Building** | Week 1: Project Scaffolding & Chat Interface |
+| **Building** | Week 1: Foundation |
 | **Status** | Ready to start |
-| **Blocked on** | Nothing - all infrastructure validated |
-| **Next up** | Initialize Next.js project, deploy to Vercel |
+| **Blocked on** | Nothing — all dependencies resolved |
+| **Next up** | Project scaffolding, GHL API integration, Claude SDK setup |
+
+### Week 1 Tasks
+
+- [ ] Initialize Next.js 14 project with App Router
+- [ ] Configure Tailwind CSS with Charleston Palette
+- [ ] Set up Zustand store structure
+- [ ] Set up Supabase tables (chat_messages, user_settings)
+- [ ] Implement GHL API wrapper (contacts, search)
+- [ ] Set up Claude SDK with streaming
+- [ ] Build basic chat interface (text input, message display)
+- [ ] Implement React Error Boundaries (root, chat, map)
+- [ ] Deploy to Vercel
+
+### Week 1 Exit Criteria
+
+- [ ] Can add a contact via chat ("Add John Smith")
+- [ ] Messages stream in real-time
+- [ ] GHL contact appears in dashboard
+
+---
+
+## MVP Roadmap Overview
+
+| Week | Focus | Key Deliverables |
+|------|-------|------------------|
+| 1 | Foundation | Project setup, GHL API, Claude SDK, basic chat |
+| 2 | Core Chat | Voice input, document generation, dual-pane |
+| 3 | Your Territory | Mapbox, pins, detail panels, filtering |
+| 4 | Polish | Daily briefing, client profile, ⌘K, mobile |
+| 5 | Beta Prep | Templates, Google Drive, onboarding, bug fixes |
+| 6 | Beta Launch | Polish, 10 agents, monitoring, feedback |
+
+**See ENGINEERING_BRIEF_MVP.md for detailed screen specifications and wireframes.**
 
 ---
 
@@ -295,6 +450,9 @@ PORT=
 
 | Document | Purpose |
 |----------|---------|
+| `ENGINEERING_BRIEF_MVP.md` | **Primary reference** — Screen specs, wireframes, week-by-week roadmap |
+| `ENGINEERING_BRIEF_TECHNICAL_REVIEW.md` | Technical Architect sign-off and recommendations |
+| `MAPBOX_FEASIBILITY_ASSESSMENT.md` | Map feature technical validation |
 | `AgentAlly_PRD_v2.md` | What we're building (to be updated to v3) |
 | `TECHNICAL_FEASIBILITY.md` | How we're building it |
 | `UNIT_ECONOMICS.md` | Business viability |
@@ -303,35 +461,6 @@ PORT=
 | `LEADERSHIP_ROSTER.md` | Team and responsibilities |
 | `COMPLIANCE.md` | Legal compliance framework |
 | `GHL_TECHNICAL_SPIKE_RESULTS.md` | API validation results |
-
----
-
-# Current PRD
-cat AgentAlly_PRD_v2.md
-
-**Copy this block into prompts:**
-
-# Supporting analysis
-cat COMPETITIVE_ANALYSIS.md
-cat TECHNICAL_FEASIBILITY.md
-cat VALIDATION_PLAN.md
-cat RESEARCH_SYNTHESIS_v2.md
-```
-
----
-
-## Slash Commands
-
-```
-Realtor-Copilot/
-├── CLAUDE.md                      # This file - project context
-├── AgentAlly_PRD_v2.md           # Current PRD
-├── UNIT_ECONOMICS.md              # Financial model
-├── COMPETITIVE_ANALYSIS.md        # Competitor analysis
-├── TECHNICAL_FEASIBILITY.md       # Tech assessment
-├── VALIDATION_PLAN.md             # Research & interview plan
-└── RESEARCH_SYNTHESIS_v2.md       # Deep research synthesis
-```
 
 ---
 
@@ -344,8 +473,12 @@ Realtor-Copilot/
 - [x] Technical feasibility assessment
 - [x] Validation plan creation
 - [x] GHL API technical spike ✅ ALL TESTS PASSED (Jan 2026)
-- [x] Infrastructure setup (Supabase, Vercel, Anthropic)
-- [x] Legal compliance framework (War Room approved)
+- [x] Infrastructure setup (Supabase, Vercel, Anthropic) ✅ READY
+- [x] Legal compliance framework ✅ War Room approved
+- [x] Engineering Brief complete ✅ Tech Architect approved
+- [x] Mapbox feasibility validated ✅ GO decision
+- [x] Domain purchased ✅ getagentally.com
+- [x] Google Cloud project ✅ Ready
 
 ### Not Yet Started
 - [ ] Phase 1: Reddit/forum research (Gemini Deep Research)
@@ -374,4 +507,4 @@ GHL launched "AI Employee" (Voice AI, Conversation AI). They could commoditize o
 
 ---
 
-*Last updated: January 2026 by Claude Code*
+*Last updated: January 2026 (v3) by Claude Code*
